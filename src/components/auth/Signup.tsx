@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Copyright from "../common/Copyright";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,8 +36,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// 회원가입 컴포넌트
 const Signup = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -132,7 +135,11 @@ const Signup = () => {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/auth/login" variant="body2">
+              <Link
+                variant="body2"
+                onClick={() => history.push("/auth/login")}
+                style={{ cursor: "pointer" }}
+              >
                 이미 계졍이 있으신가요? 로그인
               </Link>
             </Grid>

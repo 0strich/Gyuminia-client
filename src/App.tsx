@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Auth from "./components/auth/Auth";
 import Ranking from "./components/Ranking";
 import Character from "./components/Character";
+import "./css/App.css";
 
 function App() {
   return (
@@ -14,10 +15,7 @@ function App() {
       <React.Fragment>
         <CssBaseline />
         <Container fixed>
-          <Typography
-            component="div"
-            style={{ backgroundColor: "lightgray", height: "100vh" }}
-          >
+          <Typography className="app" component="div">
             <Switch>
               <Route exact path="/auth/:type" component={Auth} />
               <Route exact path="/ranking" component={Ranking} />
