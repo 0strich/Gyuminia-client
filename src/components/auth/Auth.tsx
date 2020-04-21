@@ -9,6 +9,7 @@ import Signup from "./Signup";
 const Auth = () => {
   const { type } = useParams();
   const history = useHistory();
+
   // 인증 타입별로 컴포넌트 분기
   const authQurter = (): any => {
     if (type === "login" || type === "signup") {
@@ -18,6 +19,7 @@ const Auth = () => {
     }
   };
 
+  /* 렌더링 */
   return (
     <React.Fragment>
       <CssBaseline />

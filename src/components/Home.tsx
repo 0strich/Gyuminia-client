@@ -1,7 +1,4 @@
 import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
@@ -23,36 +20,26 @@ const Home = () => {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Container fixed>
-        <Typography
-          component="div"
-          style={{ backgroundColor: "lightgray", height: "100vh" }}
-        >
-          <div className={classes.root} style={{ marginTop: "50%" }}>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Paper className={classes.paper}>Home Page</Paper>
-              </Grid>
-              <Grid item xs={12}>
-                <Paper className={classes.paper}>Gyuminia</Paper>
-                <Paper className={classes.paper}>규미니아</Paper>
-              </Grid>
-              <Grid item xs={4}>
-                <Paper className={classes.paper}>캐릭터 슬롯</Paper>
-              </Grid>
-              <Grid item xs={4}>
-                <Paper className={classes.paper}>캐릭터 슬롯</Paper>
-              </Grid>
-              <Grid item xs={4}>
-                <Paper className={classes.paper}>캐릭터 슬롯</Paper>
-              </Grid>
-            </Grid>
-          </div>
-        </Typography>
-      </Container>
-    </React.Fragment>
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>Home Page</Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>Gyuminia</Paper>
+          <Paper className={classes.paper}>규미니아</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>캐릭터 슬롯</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>캐릭터 슬롯</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>캐릭터 슬롯</Paper>
+        </Grid>
+      </Grid>
+    </div>
   );
 };
 
