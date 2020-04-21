@@ -2,35 +2,26 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    justifyContent: "center",
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
+    textAlign: "center",
   },
   title: {
     fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
   },
 });
 
 const Character = () => {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-  const characterCard = (order: number) => (
+  const characterCard = (order: number, charName: string) => (
     <Grid item xs={4}>
       <Card className={classes.root}>
         <CardContent>
@@ -39,25 +30,34 @@ const Character = () => {
             color="textSecondary"
             gutterBottom
           >
-            {order} 번째 캐릭터
+            {order}번 캐릭터
           </Typography>
           <Typography variant="h5" component="h2">
-            be{bull}nev{bull}o{bull}lent
-          </Typography>
-          <Typography className={classes.pos} color="textSecondary">
-            adjective
+            {charName}
           </Typography>
           <Typography variant="body2" component="p">
-            well meaning and kindly.
+            능력치
             <br />
-            {'"a benevolent smile"'}
+            캐릭터 정보
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button color="primary" size="large">
-            캐릭터 만들기
-          </Button>
-        </CardActions>
+        <Button color="primary" size="large">
+          게임 시작
+        </Button>
+      </Card>
+    </Grid>
+  );
+  const skeletonCard = () => (
+    <Grid item xs={4}>
+      <Card className={classes.root}>
+        <div>
+          <Skeleton variant="text" animation="wave" />
+          <Skeleton variant="text" animation="wave" />
+          <Skeleton variant="rect" animation="wave" width={400} height={100} />
+        </div>
+        <Button color="primary" size="large">
+          캐릭터 만들기
+        </Button>
       </Card>
     </Grid>
   );
@@ -70,11 +70,12 @@ const Character = () => {
           <Typography variant="h5">캐릭터</Typography>
         </Toolbar>
       </AppBar>
-      <br></br>
+      <br />
       <Grid container spacing={3}>
-        {characterCard(1)}
-        {characterCard(2)}
-        {characterCard(3)}
+        {characterCard(1, "Patric")}
+        {characterCard(2, "Junior")}
+        {characterCard(3, "Gyuminia")}
+        {skeletonCard()}
       </Grid>
     </div>
   );
