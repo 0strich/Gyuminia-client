@@ -13,6 +13,9 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 
 const StyledTableCell = withStyles((theme: Theme) =>
@@ -58,15 +61,23 @@ const rows = [
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
+    justifyContent: "center",
   },
 });
 
+// Ranking 컴포넌트
 const Ranking = () => {
   const classes = useStyles();
   const history = useHistory();
 
   return (
     <div>
+      <AppBar position="static" color="primary">
+        <Toolbar style={{ justifyContent: "center" }}>
+          <Typography variant="h5">캐릭터 랭킹</Typography>
+        </Toolbar>
+      </AppBar>
+      <br></br>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
