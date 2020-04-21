@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+// Home 컴포넌트
 const Home = () => {
   const classes = useStyles();
 
