@@ -84,6 +84,7 @@ const Login = () => {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                onClick={() => history.push("/character")}
               >
                 로그인
               </Button>
