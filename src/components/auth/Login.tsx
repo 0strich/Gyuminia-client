@@ -41,6 +41,7 @@ const Login = () => {
 
   return (
     <Container component="main" maxWidth="xs">
+      {/* <Container fixed> */}
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -103,12 +104,16 @@ const Login = () => {
           </Grid>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link variant="body2" style={{ cursor: "pointer" }}>
                 비밀번호 찾기
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/auth/signup" variant="body2">
+              <Link
+                variant="body2"
+                onClick={() => history.push("/auth/signup")}
+                style={{ cursor: "pointer" }}
+              >
                 계정이 없으신가요? 회원가입
               </Link>
             </Grid>
