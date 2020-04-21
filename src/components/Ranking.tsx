@@ -77,7 +77,7 @@ const Ranking = () => {
           <Typography variant="h5">캐릭터 랭킹</Typography>
         </Toolbar>
       </AppBar>
-      <br></br>
+      <br />
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
@@ -110,7 +110,7 @@ const Ranking = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <br></br>
+      <br />
       <Button
         size="large"
         variant="contained"
