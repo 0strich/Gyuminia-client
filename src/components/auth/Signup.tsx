@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,19 +12,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
-const Copyright = () => {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-};
+import Copyright from "../common/Copyright";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,6 +37,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Signup = () => {
   const classes = useStyles();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [mobile, setMobile] = useState("");
+
+  // input 값들 값이 변경될때마다 state 적용
+  const onChange = (e: any, callback: Function) => callback(e.target.value);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -61,27 +57,17 @@ const Signup = () => {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
+                autoComplete="username"
+                name="username"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="이름"
+                id="username"
+                label="아이디"
+                onChange={(e: any) => onChange(e, setUsername)}
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="성"
-                name="lastName"
-                autoComplete="lname"
               />
             </Grid>
             <Grid item xs={12}>
@@ -92,6 +78,7 @@ const Signup = () => {
                 id="email"
                 label="이메일"
                 name="email"
+                onChange={(e: any) => onChange(e, setEmail)}
                 autoComplete="email"
               />
             </Grid>
@@ -104,7 +91,20 @@ const Signup = () => {
                 label="비밀번호"
                 type="password"
                 id="password"
+                onChange={(e: any) => onChange(e, setPassword)}
                 autoComplete="current-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="mobile"
+                label="휴대전화"
+                name="mobile"
+                onChange={(e: any) => onChange(e, setMobile)}
+                autoComplete="mobile"
               />
             </Grid>
             <Grid item xs={12}>
@@ -115,11 +115,18 @@ const Signup = () => {
             </Grid>
           </Grid>
           <Button
-            type="submit"
+            // type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={async () => {
+              const res = await axios.post(
+                "http://localhost:5001/users/signup",
+                { username, email, password, mobile }
+              );
+              console.log(res.data);
+            }}
           >
             회원가입
           </Button>

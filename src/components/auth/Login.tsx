@@ -12,19 +12,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
-const Copyright = () => {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-};
+import Copyright from "../common/Copyright";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -86,15 +76,30 @@ const Login = () => {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            로그인
-          </Button>
+          {/* buttons */}
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                로그인
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={() => history.push("/ranking")}
+              >
+                랭킹 보기
+              </Button>
+            </Grid>
+          </Grid>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
