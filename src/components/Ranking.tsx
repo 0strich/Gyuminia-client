@@ -115,7 +115,7 @@ const Ranking = () => {
         size="large"
         variant="contained"
         color="primary"
-        onClick={() => history.push("/auth/login")}
+        onClick={() => history.goBack()}
       >
         돌아가기
       </Button>

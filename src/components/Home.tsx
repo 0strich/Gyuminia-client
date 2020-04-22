@@ -1,45 +1,57 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
     },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: "center",
-      color: theme.palette.text.secondary,
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
     },
   })
 );
 
-// Home 컴포넌트
 const Home = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>Home Page</Paper>
-        </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>Gyuminia</Paper>
-          <Paper className={classes.paper}>규미니아</Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}>캐릭터 슬롯</Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}>캐릭터 슬롯</Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}>캐릭터 슬롯</Paper>
-        </Grid>
-      </Grid>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            Welcome To Gyuminia
+          </Typography>
+          <Button color="inherit" onClick={() => history.push("/auth/login")}>
+            로그인
+          </Button>
+          <Button color="inherit" onClick={() => history.push("/auth/signup")}>
+            회원가입
+          </Button>
+          <Button color="inherit" onClick={() => history.push("/ranking")}>
+            캐릭터 랭킹
+          </Button>
+        </Toolbar>
+      </AppBar>
     </div>
   );
 };
