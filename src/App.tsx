@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import Auth from "./components/auth/Auth";
 import Ranking from "./components/Ranking";
 import Character from "./components/Character";
-import Game from "./components/Game";
+import Game from "./components/game/Game";
 import "./css/App.css";
 
 function App() {
