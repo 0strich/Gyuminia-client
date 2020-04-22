@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 
 // actions
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS" as const;
@@ -13,7 +13,7 @@ type stateType = { isLogin: boolean };
 const initState: stateType = { isLogin: false };
 
 // actions creators
-const register = () => {
+export const register = () => {
   return async (dispatch: any) => {
     try {
       dispatch({ type: REGISTER_SUCCESS });

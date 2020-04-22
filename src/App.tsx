@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Auth from "./components/auth/Auth";
 import Ranking from "./components/Ranking";
 import Character from "./components/Character";
+import Game from "./components/Game";
 import "./css/App.css";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
               <Route exact path="/auth/:type" component={Auth} />
               <Route exact path="/ranking" component={Ranking} />
               <Route exact path="/character" component={Character} />
+              <Route exact path="/game" component={Game} />
               <Route path="/" component={Home} />
             </Switch>
           </Typography>

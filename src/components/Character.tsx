@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles({
 
 const Character = () => {
   const classes = useStyles();
+  const history = useHistory();
   const characterCard = (order: number, charName: string) => (
     <Grid item xs={4}>
       <Card className={classes.root}>
@@ -41,7 +43,11 @@ const Character = () => {
             캐릭터 정보
           </Typography>
         </CardContent>
-        <Button color="primary" size="large">
+        <Button
+          color="primary"
+          size="large"
+          onClick={() => history.push("/game")}
+        >
           게임 시작
         </Button>
       </Card>
