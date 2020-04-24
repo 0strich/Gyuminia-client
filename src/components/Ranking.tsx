@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  withStyles,
-  Theme,
-  createStyles,
-  makeStyles,
-} from "@material-ui/core/styles";
+import { withStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -17,6 +12,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
+import { rankingStyles } from "../css/useStyles";
 
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
@@ -58,16 +54,9 @@ const rows = [
   createData(2, "junior", 9, 90, 10, 9000, "test2"),
 ];
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 700,
-    justifyContent: "center",
-  },
-});
-
 // Ranking 컴포넌트
 const Ranking = () => {
-  const classes = useStyles();
+  const rankinnStyle = rankingStyles();
   const history = useHistory();
 
   return (
@@ -79,7 +68,7 @@ const Ranking = () => {
       </AppBar>
       <br />
       <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="customized table">
+        <Table className={rankinnStyle.table} aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell>순위</StyledTableCell>

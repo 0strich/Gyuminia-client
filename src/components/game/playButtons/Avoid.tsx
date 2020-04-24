@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +17,7 @@ type Props = { setAdventure: Function };
 
 const Avoid = ({ setAdventure }: Props) => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <div className={classes.root}>
@@ -30,7 +32,7 @@ const Avoid = ({ setAdventure }: Props) => {
         <Button onClick={() => setAdventure(true)}>모험</Button>
         <Button>휴식</Button>
         <Button>상점</Button>
-        <Button>종료</Button>
+        <Button onClick={() => history.goBack()}>종료</Button>
       </ButtonGroup>
     </div>
   );

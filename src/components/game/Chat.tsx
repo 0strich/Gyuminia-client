@@ -1,6 +1,5 @@
 import React, { useState, KeyboardEvent, MouseEvent } from "react";
 import clsx from "clsx";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
@@ -10,22 +9,12 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ImageIcon from "@material-ui/icons/Image";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: "100%",
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-    list: { width: 400 },
-  })
-);
+import { chatStyles } from "../../css/useStyles";
 
 type Anchor = "chat";
 
 const Chat = () => {
-  const classes = useStyles();
+  const chatStyle = chatStyles();
   const [state, setState] = useState({ chat: false });
 
   const toggleDrawer = (anchor: Anchor, open: boolean) => (
@@ -56,7 +45,7 @@ const Chat = () => {
   // 채팅창으로 대체
   const list = (anchor: Anchor) => (
     <div
-      className={clsx(classes.list)}
+      className={clsx(chatStyle.list)}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}

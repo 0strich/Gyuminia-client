@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -9,26 +8,17 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { useHistory } from "react-router-dom";
-
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    textAlign: "center",
-  },
-  title: {
-    fontSize: 14,
-  },
-});
+import { characterStyles } from "../css/useStyles";
 
 const Character = () => {
-  const classes = useStyles();
+  const characterStyle = characterStyles();
   const history = useHistory();
   const characterCard = (order: number, charName: string) => (
     <Grid item xs={4}>
-      <Card className={classes.root}>
+      <Card className={characterStyle.root}>
         <CardContent>
           <Typography
-            className={classes.title}
+            className={characterStyle.title}
             color="textSecondary"
             gutterBottom
           >
@@ -55,7 +45,7 @@ const Character = () => {
   );
   const skeletonCard = () => (
     <Grid item xs={4}>
-      <Card className={classes.root}>
+      <Card className={characterStyle.root}>
         <div>
           <Skeleton variant="text" animation="wave" />
           <Skeleton variant="text" animation="wave" />
@@ -74,6 +64,9 @@ const Character = () => {
       <AppBar position="static" color="primary">
         <Toolbar style={{ justifyContent: "center" }}>
           <Typography variant="h5">캐릭터</Typography>
+          <Button color="inherit" style={{ justifyContent: "right" }}>
+            로그아웃
+          </Button>
         </Toolbar>
       </AppBar>
       <br />
