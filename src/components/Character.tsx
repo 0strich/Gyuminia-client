@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -7,12 +7,30 @@ import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Skeleton from "@material-ui/lab/Skeleton";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Backdrop from "@material-ui/core/Backdrop";
 import { useHistory } from "react-router-dom";
 import { characterStyles } from "../css/useStyles";
+import useCharacter from "../hooks/useCharacter";
+import { LoadingStyles } from "../css/useStyles";
 
 const Character = () => {
   const characterStyle = characterStyles();
   const history = useHistory();
+  const { charInfo, getCharInfo } = useCharacter();
+  useEffect(() => {
+    getCharInfo();
+  }, []);
+
+  const LoadingStyle = LoadingStyles();
+  const test = () => {
+    return (
+      <Backdrop className={LoadingStyle.backdrop} open={true}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    );
+  };
+
   const characterCard = (order: number, charName: string) => (
     <Grid item xs={4}>
       <Card className={characterStyle.root}>
@@ -58,6 +76,17 @@ const Character = () => {
     </Grid>
   );
 
+  const charExist = () => {
+    return (
+      <>
+        {charInfo.map((char: any) =>
+          characterCard(char.id, char.character_name)
+        )}
+        {skeletonCard()}
+      </>
+    );
+  };
+
   /* 렌더링 */
   return (
     <div>
@@ -71,10 +100,7 @@ const Character = () => {
       </AppBar>
       <br />
       <Grid container spacing={3}>
-        {characterCard(1, "Patric")}
-        {characterCard(2, "Junior")}
-        {characterCard(3, "Gyuminia")}
-        {skeletonCard()}
+        {charInfo[0] ? charExist() : test()}
       </Grid>
     </div>
   );
