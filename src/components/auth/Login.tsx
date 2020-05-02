@@ -73,15 +73,7 @@ const Login = () => {
                 variant="contained"
                 color="primary"
                 className={loginStyle.submit}
-                onClick={async () => {
-                  try {
-                    await axios.post("http://localhost:5001/users/login", {
-                      email,
-                      password,
-                    });
-                    history.push("/character");
-                  } catch (err) {}
-                }}
+                onClick={async () => history.push("/character")}
               >
                 로그인
               </Button>
