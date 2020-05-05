@@ -22,7 +22,11 @@ const Store = () => {
   const { weapons, getWeapons } = useWeapons();
   const rows = weapons;
 
-  useEffect(() => getWeapons(), []);
+  useEffect(
+    () => getWeapons(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   /* 렌더링 */
   return (

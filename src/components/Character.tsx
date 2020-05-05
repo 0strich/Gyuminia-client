@@ -19,7 +19,11 @@ const Character = () => {
   const history = useHistory();
   const { charInfo, getCharInfo } = useCharacter();
 
-  useEffect(() => getCharInfo(), []);
+  useEffect(
+    () => getCharInfo(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   const LoadingStyle = loadingStyles();
   const test = () => {
