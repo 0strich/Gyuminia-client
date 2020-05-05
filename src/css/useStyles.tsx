@@ -103,9 +103,16 @@ export const rankingStyles = makeStyles({
 });
 
 // Loading
-export const LoadingStyles = makeStyles((theme) => ({
+export const loadingStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: "#fff",
   },
 }));
+
+// 상점 테이블
+export const storeStyles = makeStyles({
+  table: {
+    minWidth: 700,
+  },
+});

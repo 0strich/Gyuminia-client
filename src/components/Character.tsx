@@ -12,17 +12,16 @@ import Backdrop from "@material-ui/core/Backdrop";
 import { useHistory } from "react-router-dom";
 import { characterStyles } from "../css/useStyles";
 import useCharacter from "../hooks/useCharacter";
-import { LoadingStyles } from "../css/useStyles";
+import { loadingStyles } from "../css/useStyles";
 
 const Character = () => {
   const characterStyle = characterStyles();
   const history = useHistory();
   const { charInfo, getCharInfo } = useCharacter();
-  useEffect(() => {
-    getCharInfo();
-  }, []);
 
-  const LoadingStyle = LoadingStyles();
+  useEffect(() => getCharInfo(), []);
+
+  const LoadingStyle = loadingStyles();
   const test = () => {
     return (
       <Backdrop className={LoadingStyle.backdrop} open={true}>

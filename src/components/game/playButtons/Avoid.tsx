@@ -31,7 +31,7 @@ const Avoid = ({ setAdventure }: Props) => {
       >
         <Button onClick={() => setAdventure(true)}>모험</Button>
         <Button>휴식</Button>
-        <Button>상점</Button>
+        <Button onClick={() => history.push("/store")}>상점</Button>
         <Button onClick={() => history.goBack()}>종료</Button>
       </ButtonGroup>
     </div>
