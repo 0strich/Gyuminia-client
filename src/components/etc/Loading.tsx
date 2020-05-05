@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { LoadingStyles } from "../../css/useStyles";
+import { loadingStyles } from "../../css/useStyles";
 
 const Loading = () => {
-  const LoadingStyle = LoadingStyles();
+  const LoadingStyle = loadingStyles();
   return (
     <div>
       <Backdrop className={LoadingStyle.backdrop} open={true}>

@@ -8,6 +8,7 @@ import Auth from "./components/auth/Auth";
 import Ranking from "./components/Ranking";
 import Character from "./components/Character";
 import Game from "./components/game/Game";
+import Store from "./components/game/Store";
 import "./css/App.css";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
               <Route exact path="/ranking" component={Ranking} />
               <Route exact path="/character" component={Character} />
               <Route exact path="/game" component={Game} />
+              <Route exact path="/store" component={Store} />
               <Route path="/" component={Home} />
             </Switch>
           </Typography>
