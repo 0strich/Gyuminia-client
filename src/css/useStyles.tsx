@@ -61,7 +61,7 @@ export const playStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     paper: {
-      padding: theme.spacing(6),
+      padding: theme.spacing(14),
       textAlign: "center",
       color: theme.palette.text.secondary,
     },

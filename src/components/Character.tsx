@@ -13,6 +13,7 @@ import { useHistory } from "react-router-dom";
 import { characterStyles } from "../css/useStyles";
 import useCharacter from "../hooks/useCharacter";
 import { loadingStyles } from "../css/useStyles";
+import Loading from "../components/etc/Loading";
 
 const Character = () => {
   const characterStyle = characterStyles();
@@ -26,11 +27,7 @@ const Character = () => {
 
   const LoadingStyle = loadingStyles();
   const test = () => {
-    return (
-      <Backdrop className={LoadingStyle.backdrop} open={true}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    );
+    return <Loading />;
   };
 
   const characterCard = (order: number, charName: string) => (
