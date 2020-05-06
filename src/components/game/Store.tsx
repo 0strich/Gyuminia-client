@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Button from "@material-ui/core/Button";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -8,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import useWeapons from "../../hooks/useWeapons";
 import { storeStyles } from "../../css/useStyles";
+import { useHistory } from "react-router-dom";
 
 type Row = {
   id: string;
@@ -21,16 +23,23 @@ const Store = () => {
   const storeStyle = storeStyles();
   const { weapons, getWeapons } = useWeapons();
   const rows = weapons;
+  const history = useHistory();
 
-  useEffect(
-    () => getWeapons(),
+  useEffect(() => {
+    getWeapons();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+  }, []);
 
   /* 렌더링 */
   return (
     <TableContainer component={Paper}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => history.goBack()}
+      >
+        돌아가기
+      </Button>
       <Table className={storeStyle.table} aria-label="spanning table">
         <TableHead>
           <TableRow>
