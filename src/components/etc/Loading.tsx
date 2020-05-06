@@ -1,16 +1,14 @@
 import React from "react";
-import Backdrop from "@material-ui/core/Backdrop";
+import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { loadingStyles } from "../../css/useStyles";
 
 const Loading = () => {
-  const LoadingStyle = loadingStyles();
   return (
-    <div>
-      <Backdrop className={LoadingStyle.backdrop} open={true}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    </div>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <CircularProgress disableShrink />
+      </Grid>
+    </Grid>
   );
 };
 

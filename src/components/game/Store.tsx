@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import useWeapons from "../../hooks/useWeapons";
 import { storeStyles } from "../../css/useStyles";
 import { useHistory } from "react-router-dom";
+import Loading from "../etc/Loading";
 
 type Row = {
   id: string;
@@ -55,16 +56,18 @@ const Store = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows[0]
-            ? rows.map((row: any) => (
-                <TableRow key={row.item}>
-                  <TableCell align="center">{row.item}</TableCell>
-                  <TableCell align="center">{row.attack}</TableCell>
-                  <TableCell align="center">{row.defense}</TableCell>
-                  <TableCell align="center">{row.cost}</TableCell>
-                </TableRow>
-              ))
-            : null}
+          {rows[0] ? (
+            rows.map((row: any) => (
+              <TableRow key={row.item}>
+                <TableCell align="center">{row.item}</TableCell>
+                <TableCell align="center">{row.attack}</TableCell>
+                <TableCell align="center">{row.defense}</TableCell>
+                <TableCell align="center">{row.cost}</TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <Loading />
+          )}
         </TableBody>
       </Table>
     </TableContainer>
