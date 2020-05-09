@@ -7,12 +7,9 @@ import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Skeleton from "@material-ui/lab/Skeleton";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Backdrop from "@material-ui/core/Backdrop";
 import { useHistory } from "react-router-dom";
 import { characterStyles } from "../css/useStyles";
 import useCharacter from "../hooks/useCharacter";
-import { loadingStyles } from "../css/useStyles";
 import Loading from "../components/etc/Loading";
 
 const Character = () => {
@@ -25,12 +22,13 @@ const Character = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const LoadingStyle = loadingStyles();
-  const test = () => {
-    return <Loading />;
-  };
-
-  const characterCard = (order: number, charName: string) => (
+  const characterCard = (
+    order: number,
+    charName: string,
+    hp: string,
+    attack: string,
+    exp: string
+  ) => (
     <Grid item xs={4}>
       <Card className={characterStyle.root}>
         <CardContent>
@@ -45,9 +43,11 @@ const Character = () => {
             {charName}
           </Typography>
           <Typography variant="body2" component="p">
-            능력치
+            hp : {hp}
             <br />
-            캐릭터 정보
+            attack : {attack}
+            <br />
+            exp : {exp}
           </Typography>
         </CardContent>
         <Button
@@ -79,7 +79,13 @@ const Character = () => {
     return (
       <>
         {charInfo.map((char: any) =>
-          characterCard(char.id, char.character_name)
+          characterCard(
+            char.id,
+            char.character_name,
+            char.hp,
+            char.attack,
+            char.exp
+          )
         )}
         {skeletonCard()}
       </>
@@ -99,7 +105,7 @@ const Character = () => {
       </AppBar>
       <br />
       <Grid container spacing={3}>
-        {charInfo[0] ? charExist() : test()}
+        {charInfo[0] ? charExist() : <Loading />}
       </Grid>
     </div>
   );

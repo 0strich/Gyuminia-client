@@ -7,7 +7,7 @@ export const characterInfo = (): any => {
   return async (dispatch: any) => {
     try {
       const res = await axios(
-        "http://www.mocky.io/v2/5ea54b6c3000008050ce2ecb"
+        "http://www.mocky.io/v2/5eb6154431000069006998f6"
       );
       dispatch({ type: CHARACTER_INFO_SUCCESS, charInfo: res.data });
     } catch (err) {

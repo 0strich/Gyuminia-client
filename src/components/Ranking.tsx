@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -13,6 +13,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 import { rankingStyles } from "../css/useStyles";
+import useCharacter from "../hooks/useCharacter";
+import Loading from "../components/etc/Loading";
 
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
@@ -58,6 +60,12 @@ const rows = [
 const Ranking = () => {
   const rankinnStyle = rankingStyles();
   const history = useHistory();
+  const { charInfo, getCharInfo } = useCharacter();
+
+  useEffect(() => {
+    getCharInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -81,21 +89,27 @@ const Ranking = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.rank}>
-                <StyledTableCell component="th" scope="row">
-                  {row.rank}
-                </StyledTableCell>
-                <StyledTableCell align="right">{row.character}</StyledTableCell>
-                <StyledTableCell align="right">{row.level}</StyledTableCell>
-                <StyledTableCell align="right">{row.hp}</StyledTableCell>
-                <StyledTableCell align="right">{row.attack}</StyledTableCell>
-                <StyledTableCell align="right">{row.score}</StyledTableCell>
-                <StyledTableCell align="right">
-                  {row.last_access}
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
+            {charInfo[0] ? (
+              rows.map((row) => (
+                <StyledTableRow key={row.rank}>
+                  <StyledTableCell component="th" scope="row">
+                    {row.rank}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.character}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.level}</StyledTableCell>
+                  <StyledTableCell align="right">{row.hp}</StyledTableCell>
+                  <StyledTableCell align="right">{row.attack}</StyledTableCell>
+                  <StyledTableCell align="right">{row.score}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.last_access}
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))
+            ) : (
+              <Loading />
+            )}
           </TableBody>
         </Table>
       </TableContainer>
