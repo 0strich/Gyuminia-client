@@ -6,9 +6,12 @@ const CHARACTER_INFO_FAIL = "CHARACTER_INFO_FAIL" as const;
 export const characterInfo = (): any => {
   return async (dispatch: any) => {
     try {
-      const res = await axios(
-        "http://www.mocky.io/v2/5eb6154431000069006998f6"
+      const res = await axios.post(
+        // "http://www.mocky.io/v2/5eb6154431000069006998f6"
+        "http://localhost:5001/characters/info",
+        { createStyles: "include" }
       );
+      console.log("res ==> ", res);
       dispatch({ type: CHARACTER_INFO_SUCCESS, charInfo: res.data });
     } catch (err) {
       dispatch({ type: CHARACTER_INFO_FAIL, charInfo: [] });
