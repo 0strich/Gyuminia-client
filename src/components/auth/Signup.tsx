@@ -26,6 +26,7 @@ const Signup = () => {
   const [mobile, setMobile] = useState("");
   const [successOpen, setSuccess] = useState(false);
   const [failOpen, setFail] = useState(false);
+  const postOption = { username, email, password, mobile };
 
   // input 값들 값이 변경될때마다 state 적용
   const onChange = (e: any, callback: Function) => callback(e.target.value);
@@ -111,12 +112,10 @@ const Signup = () => {
             className={signupStyle.submit}
             onClick={async () => {
               try {
-                await axios.post("http://localhost:5001/users/signup", {
-                  username,
-                  email,
-                  password,
-                  mobile,
-                });
+                await axios.post(
+                  "http://localhost:5001/users/signup",
+                  postOption
+                );
                 handleSuccessOpen();
               } catch (err) {
                 handleFailOpen();

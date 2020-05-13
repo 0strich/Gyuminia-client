@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Character from "../Character";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,15 +15,26 @@ import Container from "@material-ui/core/Container";
 import Copyright from "../common/Copyright";
 import { useHistory } from "react-router-dom";
 import { loginStyles } from "../../css/useStyles";
+import useLogin from "../../hooks/useLogin";
 
 const Login = () => {
   const loginStyle = loginStyles();
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { isLogin, tryLogin } = useLogin();
+
+  const login = () => {
+    tryLogin(email, password);
+    console.log(isLogin);
+  };
 
   // input 값들 값이 변경될때마다 state 적용
   const onChange = (e: any, callback: Function) => callback(e.target.value);
+
+  if (isLogin) {
+    return <Character />;
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -72,7 +84,7 @@ const Login = () => {
                 variant="contained"
                 color="primary"
                 className={loginStyle.submit}
-                onClick={async () => history.push("/character")}
+                onClick={() => login()}
               >
                 로그인
               </Button>

@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 
 // actions
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS" as const;
@@ -11,6 +11,21 @@ type stateType = { isLogin: boolean };
 
 // state
 const initState: stateType = { isLogin: false };
+
+// login actions
+export const login = (email: string, password: string) => {
+  return async (dispatch: any) => {
+    try {
+      const res = await axios.post("http://localhost:5001/users/login", {
+        email,
+        password,
+      });
+      dispatch({ type: LOGIN_SUCCESS });
+    } catch (err) {
+      dispatch({ type: LOGIN_FAIL });
+    }
+  };
+};
 
 // actions creators
 export const register = () => {
@@ -26,6 +41,16 @@ export const register = () => {
 // reducer
 const authReducer = (state: stateType = initState, action: any) => {
   switch (action.type) {
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLogin: true,
+      };
+    case LOGIN_FAIL:
+      return {
+        ...state,
+        isLogin: false,
+      };
     case REGISTER_SUCCESS:
       return {
         ...state,
