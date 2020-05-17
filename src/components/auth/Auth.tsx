@@ -9,7 +9,6 @@ const Auth = () => {
 
   // 인증 타입별로 컴포넌트 분기
   const authQurter = (): any => {
-    console.log(type);
     if (type === "login" || type === "signup") {
       return type === "login" ? <Login /> : <Signup />;
     } else {

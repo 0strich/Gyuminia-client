@@ -8,10 +8,9 @@ export const characterInfo = (): any => {
     try {
       const res = await axios.post(
         // "http://www.mocky.io/v2/5eb6154431000069006998f6"
-        "http://localhost:5001/characters/info",
-        { createStyles: "include" }
+        "http://localhost:5001/characters/info"
       );
-      console.log("res ==> ", res);
+      console.log("character res ==> ", res.data);
       dispatch({ type: CHARACTER_INFO_SUCCESS, charInfo: res.data });
     } catch (err) {
       dispatch({ type: CHARACTER_INFO_FAIL, charInfo: [] });
