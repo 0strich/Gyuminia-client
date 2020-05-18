@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -9,18 +10,15 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { useHistory } from "react-router-dom";
 import { characterStyles } from "../css/useStyles";
-import useCharacter from "../hooks/useCharacter";
 import Loading from "../components/etc/Loading";
+import { reducerState } from "../modules";
 
 const Character = () => {
   const characterStyle = characterStyles();
   const history = useHistory();
-  const { charInfo, getCharInfo } = useCharacter();
-
-  useEffect(() => {
-    getCharInfo();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const charInfo = useSelector(
+    (state: reducerState) => state.authReducer.charInfo
+  );
 
   const characterCard = (
     order: number,

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { withStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -13,8 +13,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 import { rankingStyles } from "../css/useStyles";
-import useCharacter from "../hooks/useCharacter";
 import Loading from "../components/etc/Loading";
+import { useSelector } from "react-redux";
+import { reducerState } from "../modules";
 
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
@@ -60,12 +61,10 @@ const rows = [
 const Ranking = () => {
   const rankinnStyle = rankingStyles();
   const history = useHistory();
-  const { charInfo, getCharInfo } = useCharacter();
-
-  useEffect(() => {
-    getCharInfo();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // const { charInfo, getCharInfo } = useCharacter();
+  const charInfo = useSelector(
+    (state: reducerState) => state.authReducer.charInfo
+  );
 
   return (
     <div>
