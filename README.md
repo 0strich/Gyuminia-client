@@ -1,23 +1,14 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Gyuminia Project Front-end
+이 App 은 Gyuminia 게임의 프론트 부분을 다룹니다.
 
-In the project directory, you can run:
+### 개발자
 
-### `npm start`
+김규동
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 사용 스택
+React, Redux, Redux-thunk, React-router, axios
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
+### Modules
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
