@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -17,24 +16,33 @@ import { useHistory } from "react-router-dom";
 import { signupStyles } from "../../css/useStyles";
 import { SingupSuccess, SignupFail } from "../dialog/Dialog";
 
-const Signup = () => {
-  const signupStyle = signupStyles();
-  const history = useHistory();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [successOpen, setSuccess] = useState(false);
-  const [failOpen, setFail] = useState(false);
-  const postOption = { username, email, password, mobile };
+type Props = {
+  successOpen: boolean;
+  failOpen: boolean;
+  setUsername: Function;
+  setEmail: Function;
+  setPassword: Function;
+  setMobile: Function;
+  setSuccess: Function;
+  setFail: Function;
+  onChange: Function;
+  onSubmit: Function;
+};
 
-  // input 값들 값이 변경될때마다 state 적용
-  const onChange = (e: any, callback: Function) => callback(e.target.value);
-  // modal에 사용
-  const handleSuccessOpen = () => setSuccess(true);
-  const handleSuccessClose = () => setSuccess(false);
-  const handleFailOpen = () => setFail(true);
-  const handleFailClose = () => setFail(false);
+const SignupForm = ({
+  successOpen,
+  failOpen,
+  setUsername,
+  setEmail,
+  setPassword,
+  setMobile,
+  setSuccess,
+  setFail,
+  onChange,
+  onSubmit,
+}: Props) => {
+  const history = useHistory();
+  const signupStyle = signupStyles();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -57,7 +65,9 @@ const Signup = () => {
                 fullWidth
                 id="username"
                 label="아이디"
-                onChange={(e: any) => onChange(e, setUsername)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  onChange(e, setUsername)
+                }
                 autoFocus
               />
             </Grid>
@@ -69,7 +79,9 @@ const Signup = () => {
                 id="email"
                 label="이메일"
                 name="email"
-                onChange={(e: any) => onChange(e, setEmail)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  onChange(e, setEmail)
+                }
                 autoComplete="email"
               />
             </Grid>
@@ -82,7 +94,9 @@ const Signup = () => {
                 label="비밀번호"
                 type="password"
                 id="password"
-                onChange={(e: any) => onChange(e, setPassword)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  onChange(e, setPassword)
+                }
                 autoComplete="current-password"
               />
             </Grid>
@@ -94,7 +108,9 @@ const Signup = () => {
                 id="mobile"
                 label="휴대전화"
                 name="mobile"
-                onChange={(e: any) => onChange(e, setMobile)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  onChange(e, setMobile)
+                }
                 autoComplete="mobile"
               />
             </Grid>
@@ -110,30 +126,23 @@ const Signup = () => {
             variant="contained"
             color="primary"
             className={signupStyle.submit}
-            onClick={async () => {
-              try {
-                await axios.post(
-                  "http://localhost:5001/users/signup",
-                  postOption
-                );
-                handleSuccessOpen();
-              } catch (err) {
-                handleFailOpen();
-              }
-            }}
+            onClick={async () => onSubmit()}
           >
             회원가입
           </Button>
           <SingupSuccess
             successOpen={successOpen}
-            handleSuccessClose={handleSuccessClose}
+            handleSuccessClose={() => setSuccess(false)}
           />
-          <SignupFail failOpen={failOpen} handleFailClose={handleFailClose} />
+          <SignupFail
+            failOpen={failOpen}
+            handleFailClose={() => setFail(false)}
+          />
           <Grid container justify="flex-end">
             <Grid item>
               <Link
                 variant="body2"
-                onClick={() => history.push("/auth/login")}
+                onClick={() => history.push("/login")}
                 style={{ cursor: "pointer" }}
               >
                 이미 계졍이 있으신가요? 로그인
@@ -149,4 +158,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupForm;

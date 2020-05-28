@@ -58,7 +58,9 @@ const LoginForm = ({
             label="이메일"
             name="email"
             autoComplete="email"
-            onChange={(e: any) => onChange(e, setEmail)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              onChange(e, setEmail)
+            }
             autoFocus
           />
           <TextField
@@ -70,7 +72,9 @@ const LoginForm = ({
             label="비밀번호"
             type="password"
             id="password"
-            onChange={(e: any) => onChange(e, setPassword)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              onChange(e, setPassword)
+            }
             autoComplete="current-password"
           />
           <FormControlLabel
