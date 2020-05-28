@@ -27,7 +27,7 @@ const Home = () => {
           <Typography variant="h6" className={homeStyle.title}>
             Welcome To Gyuminia
           </Typography>
-          <Button color="inherit" onClick={() => history.push("/auth/login")}>
+          <Button color="inherit" onClick={() => history.push("/login")}>
             로그인
           </Button>
           <Button color="inherit" onClick={() => history.push("/auth/signup")}>

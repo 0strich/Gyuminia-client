@@ -42,6 +42,7 @@
     "@types/react-swipeable-views": "^0.13.0",
     "@types/redux-logger": "^3.0.7",
     "axios": "^0.19.2",
+    "eslint-plugin-react-hooks": "^4.0.4",
     "material-table": "^1.57.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
