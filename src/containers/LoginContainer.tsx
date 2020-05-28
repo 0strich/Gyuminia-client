@@ -21,10 +21,6 @@ const LoginContainer = () => {
   const onChange = (e: any, callback: Function) => callback(e.target.value);
   const onSubmit = () => tryLogin(email, password);
 
-  if (isLogin) {
-    return <Character />;
-  }
-
   return (
     <div>
       <LoginForm
