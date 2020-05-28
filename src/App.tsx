@@ -9,6 +9,7 @@ import Ranking from "./components/Ranking";
 import Character from "./components/Character";
 import Game from "./components/game/Game";
 import Store from "./components/game/Store";
+import LoginPage from "./pages/LoginPage";
 import "./css/App.css";
 
 function App() {
@@ -19,12 +20,16 @@ function App() {
         <Container fixed>
           <Typography className="app" component="div">
             <Switch>
+              <Route exact path="/login" component={LoginPage} />
               <Route exact path="/auth/:type" component={Auth} />
               <Route exact path="/ranking" component={Ranking} />
               <Route exact path="/character" component={Character} />
               <Route exact path="/game" component={Game} />
               <Route exact path="/store" component={Store} />
               <Route path="/" component={Home} />
+
+              {/* <Route exact path="/signup" component={SignupPage} />
+              <Route path="/" component={HomePage} /> */}
             </Switch>
           </Typography>
         </Container>

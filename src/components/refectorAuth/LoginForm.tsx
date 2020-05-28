@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Character from "../Character";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,24 +13,24 @@ import Container from "@material-ui/core/Container";
 import Copyright from "../common/Copyright";
 import { useHistory } from "react-router-dom";
 import { loginStyles } from "../../css/useStyles";
-import useLogin from "../../hooks/useLogin";
 
-const Login = () => {
+type Props = {
+  isLogin: boolean;
+  setEmail: Function;
+  setPassword: Function;
+  onChange: Function;
+  onSubmit: Function;
+};
+
+const LoginForm = ({
+  isLogin,
+  setEmail,
+  setPassword,
+  onChange,
+  onSubmit,
+}: Props) => {
   const loginStyle = loginStyles();
   const history = useHistory();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { isLogin, tryLogin } = useLogin();
-
-  const login = () => {
-    tryLogin(email, password);
-    console.log(isLogin);
-  };
-
-  // input 값들 값이 변경될때마다 state 적용
-  const onChange = (e: any, callback: Function) => {
-    callback(e.target.value);
-  };
 
   if (isLogin) {
     return <Character />;
@@ -85,7 +85,7 @@ const Login = () => {
                 variant="contained"
                 color="primary"
                 className={loginStyle.submit}
-                onClick={() => login()}
+                onClick={() => onSubmit()}
               >
                 로그인
               </Button>
@@ -127,4 +127,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;
