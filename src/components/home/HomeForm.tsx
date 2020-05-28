@@ -33,7 +33,7 @@ const HomePage = () => {
           <Button color="inherit" onClick={() => history.push("/signup")}>
             회원가입
           </Button>
-          <Button color="inherit" onClick={() => history.push("/ranking")}>
+          <Button color="inherit" onClick={() => history.push("/rank")}>
             캐릭터 랭킹
           </Button>
         </Toolbar>
