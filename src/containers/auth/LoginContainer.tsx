@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../modules/auth";
-import { reducerState } from "../modules";
-import LoginForm from "../components/refectorAuth/LoginForm";
+import { login } from "../../modules/auth";
+import { reducerState } from "../../modules";
+import LoginForm from "../../components/auth/LoginForm";
 
 const LoginContainer = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,10 @@ const LoginContainer = () => {
     [dispatch]
   );
 
-  const onChange = (e: any, callback: Function) => callback(e.target.value);
+  const onChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    callback: Function
+  ) => callback(e.target.value);
   const onSubmit = () => tryLogin(email, password);
 
   return (

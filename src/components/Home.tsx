@@ -30,7 +30,7 @@ const Home = () => {
           <Button color="inherit" onClick={() => history.push("/login")}>
             로그인
           </Button>
-          <Button color="inherit" onClick={() => history.push("/auth/signup")}>
+          <Button color="inherit" onClick={() => history.push("/signup")}>
             회원가입
           </Button>
           <Button color="inherit" onClick={() => history.push("/ranking")}>
