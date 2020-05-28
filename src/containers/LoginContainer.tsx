@@ -2,7 +2,6 @@ import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../modules/auth";
 import { reducerState } from "../modules";
-import Character from "../components/Character";
 import LoginForm from "../components/refectorAuth/LoginForm";
 
 const LoginContainer = () => {
