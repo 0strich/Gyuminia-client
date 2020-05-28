@@ -4,7 +4,7 @@ import { login } from "../../modules/auth";
 import { reducerState } from "../../modules";
 import LoginForm from "../../components/auth/LoginForm";
 
-const LoginContainer = () => {
+const LoginPage = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,4 +36,4 @@ const LoginContainer = () => {
   );
 };
 
-export default LoginContainer;
+export default LoginPage;

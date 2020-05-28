@@ -9,6 +9,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ImageIcon from "@material-ui/icons/Image";
+import { useHistory } from "react-router-dom";
 import { chatStyles } from "../../css/useStyles";
 
 type Anchor = "chat";
@@ -16,6 +17,7 @@ type Anchor = "chat";
 const Chat = () => {
   const chatStyle = chatStyles();
   const [state, setState] = useState({ chat: false });
+  const history = useHistory();
 
   const toggleDrawer = (anchor: Anchor, open: boolean) => (
     event: KeyboardEvent | MouseEvent
@@ -59,6 +61,13 @@ const Chat = () => {
 
   return (
     <div>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => history.push("/")}
+      >
+        Home
+      </Button>
       {(["chat"] as Anchor[]).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button
