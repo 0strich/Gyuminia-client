@@ -100,7 +100,7 @@ const LoginForm = ({
                 variant="contained"
                 color="primary"
                 className={loginStyle.submit}
-                onClick={() => history.push("/ranking")}
+                onClick={() => history.push("/rank")}
               >
                 랭킹 보기
               </Button>

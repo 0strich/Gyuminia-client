@@ -12,10 +12,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
-import { rankingStyles } from "../css/useStyles";
-import Loading from "../components/etc/Loading";
-import { useSelector } from "react-redux";
-import { reducerState } from "../modules";
+import { rankingStyles } from "../../css/useStyles";
+import Loading from "../../components/etc/Loading";
 
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
@@ -39,33 +37,25 @@ const StyledTableRow = withStyles((theme: Theme) =>
   })
 )(TableRow);
 
-// 추후 실제 데이터 가공
 const createData = (
   rank: number,
-  character: string,
+  characterName: string,
   level: number,
   hp: number,
   attack: number,
-  score: number,
+  rankScore: number,
   last_access: string
 ) => {
-  return { rank, character, level, hp, attack, score, last_access };
+  return { rank, characterName, level, hp, attack, rankScore, last_access };
 };
 
-const rows = [
-  createData(1, "patric", 10, 100, 20, 10000, "test"),
-  createData(2, "junior", 9, 90, 10, 9000, "test2"),
-];
+type Props = { charInfo: any };
 
-// Ranking 컴포넌트
-const Ranking = () => {
+// RankForm 컴포넌트
+const RankForm = ({ charInfo }: Props) => {
   const rankinnStyle = rankingStyles();
   const history = useHistory();
-  const charInfo = useSelector(
-    (state: reducerState) => state.authReducer.charInfo
-  );
-
-  console.log("charinfo ==> ", charInfo);
+  const rows = Array.prototype.slice.call(charInfo);
 
   return (
     <div>
@@ -90,18 +80,21 @@ const Ranking = () => {
           </TableHead>
           <TableBody>
             {charInfo[0] ? (
-              rows.map((row) => (
-                <StyledTableRow key={row.rank}>
+              rows.map((row: any) => (
+                <StyledTableRow key={row.id}>
                   <StyledTableCell component="th" scope="row">
-                    {row.rank}
+                    {/* {row.rank} */}
+                    {row.id}
                   </StyledTableCell>
                   <StyledTableCell align="right">
-                    {row.character}
+                    {row.characterName}
                   </StyledTableCell>
                   <StyledTableCell align="right">{row.level}</StyledTableCell>
                   <StyledTableCell align="right">{row.hp}</StyledTableCell>
                   <StyledTableCell align="right">{row.attack}</StyledTableCell>
-                  <StyledTableCell align="right">{row.score}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.rankScore}
+                  </StyledTableCell>
                   <StyledTableCell align="right">
                     {row.last_access}
                   </StyledTableCell>
@@ -126,4 +119,4 @@ const Ranking = () => {
   );
 };
 
-export default Ranking;
+export default RankForm;
