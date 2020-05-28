@@ -3,11 +3,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import Home from "./components/Home";
 import Ranking from "./components/Ranking";
 import Character from "./components/Character";
 import Game from "./components/game/Game";
 import Store from "./components/game/Store";
+import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import "./css/App.css";
@@ -26,9 +26,7 @@ function App() {
               <Route exact path="/character" component={Character} />
               <Route exact path="/game" component={Game} />
               <Route exact path="/store" component={Store} />
-              <Route path="/" component={Home} />
-
-              {/* <Route path="/" component={HomePage} /> */}
+              <Route path="/" component={HomePage} />
             </Switch>
           </Typography>
         </Container>

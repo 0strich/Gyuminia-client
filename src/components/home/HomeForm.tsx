@@ -6,9 +6,9 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useHistory } from "react-router-dom";
-import { homeStyles } from "../css/useStyles";
+import { homeStyles } from "../../css/useStyles";
 
-const Home = () => {
+const HomePage = () => {
   const homeStyle = homeStyles();
   const history = useHistory();
 
@@ -42,4 +42,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
