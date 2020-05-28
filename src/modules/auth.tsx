@@ -21,11 +21,13 @@ const initState: stateType = { isLogin: false, charInfo: {} };
 export const login = (email: string, password: string) => {
   return async (dispatch: any) => {
     try {
-      await axios.post("http://localhost:5001/users/login", {
+      const res = await axios.post("http://localhost:5001/users/login", {
         email,
         password,
       });
       dispatch({ type: LOGIN_SUCCESS });
+
+      console.log("auth res ==> ", res);
 
       // 로그인된 계정의 캐릭터 계정 불러오기
       try {

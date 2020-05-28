@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import SignupForm from "../../components/auth/SignupForm";
 
-const SignupContainer = () => {
+const SignupPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,4 +43,4 @@ const SignupContainer = () => {
   );
 };
 
-export default SignupContainer;
+export default SignupPage;

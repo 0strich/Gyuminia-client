@@ -7,9 +7,9 @@ import Ranking from "./components/Ranking";
 import Character from "./components/Character";
 import Game from "./components/game/Game";
 import Store from "./components/game/Store";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
+import HomePage from "./pages/home/HomePage";
+import LoginPage from "./pages/auth/LoginPage";
+import SignupPage from "./pages/auth/SignupPage";
 import "./css/App.css";
 
 function App() {

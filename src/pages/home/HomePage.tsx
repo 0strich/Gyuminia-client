@@ -1,8 +1,8 @@
 import React from "react";
 import HomeForm from "../../components/home/HomeForm";
 
-const HomeContainer = () => {
+const HomePage = () => {
   return <HomeForm />;
 };
 
-export default HomeContainer;
+export default HomePage;

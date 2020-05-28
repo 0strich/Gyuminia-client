@@ -66,6 +66,8 @@ const Ranking = () => {
     (state: reducerState) => state.authReducer.charInfo
   );
 
+  console.log("charinfo ==> ", charInfo);
+
   return (
     <div>
       <AppBar position="static" color="primary">
