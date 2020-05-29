@@ -46,9 +46,9 @@ export const register = (): any => {
 };
 
 // state, action types
-type stateType = { isLogin: boolean; charInfo: Array<any> };
+type stateType = { isLogin: boolean; charInfo: Array<any>; authError: any };
 type actionType = ReturnType<typeof login> | ReturnType<typeof register>;
-const initState: stateType = { isLogin: false, charInfo: [] };
+const initState: stateType = { isLogin: false, charInfo: [], authError: null };
 
 // reducer
 const auth = (state: stateType = initState, action: actionType) => {
