@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Dispatch } from "redux";
 
 // actions
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS" as const;
@@ -11,15 +12,9 @@ export const CHARACTER_INFO_FAIL = "CHARACTER_INFO_FAIL" as const;
 // withCredentials
 axios.defaults.withCredentials = true;
 
-// state type
-type stateType = { isLogin: boolean; charInfo: any };
-
-// state
-const initState: stateType = { isLogin: false, charInfo: {} };
-
-// login actions
-export const login = (email: string, password: string) => {
-  return async (dispatch: any) => {
+// action creators
+export const login = (email: string, password: string): any => {
+  return async (dispatch: Dispatch) => {
     try {
       await axios.post("http://localhost:5001/users/login", {
         email,
@@ -40,9 +35,8 @@ export const login = (email: string, password: string) => {
   };
 };
 
-// actions creators
-export const register = () => {
-  return async (dispatch: any) => {
+export const register = (): any => {
+  return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: REGISTER_SUCCESS });
     } catch (err) {
@@ -51,8 +45,13 @@ export const register = () => {
   };
 };
 
+// state, action types
+type stateType = { isLogin: boolean; charInfo: Array<any> };
+type actionType = ReturnType<typeof login> | ReturnType<typeof register>;
+const initState: stateType = { isLogin: false, charInfo: [] };
+
 // reducer
-const authReducer = (state: stateType = initState, action: any) => {
+const auth = (state: stateType = initState, action: actionType) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return {
@@ -84,4 +83,4 @@ const authReducer = (state: stateType = initState, action: any) => {
   }
 };
 
-export default authReducer;
+export default auth;

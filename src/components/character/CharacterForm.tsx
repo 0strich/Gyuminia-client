@@ -10,7 +10,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { useHistory } from "react-router-dom";
 import { characterStyles } from "../../css/useStyles";
 
-type Props = { charInfo: any };
+type Props = { charInfo: Array<any> };
 
 const CharacterForm = ({ charInfo }: Props) => {
   const characterStyle = characterStyles();

@@ -36,13 +36,12 @@ const StyledTableRow = withStyles((theme: Theme) =>
   })
 )(TableRow);
 
-type Props = { charInfo: any };
+type Props = { charInfo: Array<any> };
 
 // RankForm 컴포넌트
 const RankForm = ({ charInfo }: Props) => {
   const rankinnStyle = rankingStyles();
   const history = useHistory();
-  const rows = Array.prototype.slice.call(charInfo);
 
   return (
     <div>
@@ -66,7 +65,7 @@ const RankForm = ({ charInfo }: Props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row: any) => (
+            {charInfo.map((row: any) => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row">
                   {/* {row.rank} */}
