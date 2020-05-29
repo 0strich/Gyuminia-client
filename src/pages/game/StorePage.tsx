@@ -13,7 +13,7 @@ const StorePage = () => {
   useEffect(() => {
     dispatch(weaponData());
     // eslint-disable-next-line
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
