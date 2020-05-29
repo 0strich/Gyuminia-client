@@ -13,7 +13,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 import { rankingStyles } from "../../css/useStyles";
-import Loading from "../../components/etc/Loading";
 
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
@@ -67,30 +66,24 @@ const RankForm = ({ charInfo }: Props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {charInfo[0] ? (
-              rows.map((row: any) => (
-                <StyledTableRow key={row.id}>
-                  <StyledTableCell component="th" scope="row">
-                    {/* {row.rank} */}
-                    {row.id}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">
-                    {row.characterName}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">{row.level}</StyledTableCell>
-                  <StyledTableCell align="right">{row.hp}</StyledTableCell>
-                  <StyledTableCell align="right">{row.attack}</StyledTableCell>
-                  <StyledTableCell align="right">
-                    {row.rankScore}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">
-                    {row.last_access}
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))
-            ) : (
-              <Loading />
-            )}
+            {rows.map((row: any) => (
+              <StyledTableRow key={row.id}>
+                <StyledTableCell component="th" scope="row">
+                  {/* {row.rank} */}
+                  {row.id}
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  {row.characterName}
+                </StyledTableCell>
+                <StyledTableCell align="right">{row.level}</StyledTableCell>
+                <StyledTableCell align="right">{row.hp}</StyledTableCell>
+                <StyledTableCell align="right">{row.attack}</StyledTableCell>
+                <StyledTableCell align="right">{row.rankScore}</StyledTableCell>
+                <StyledTableCell align="right">
+                  {row.last_access}
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
