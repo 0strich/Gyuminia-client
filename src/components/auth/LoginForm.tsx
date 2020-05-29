@@ -1,5 +1,5 @@
 import React from "react";
-import Character from "../Character";
+import CharacterPage from "../../pages/character/CharacterPage";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -33,7 +33,7 @@ const LoginForm = ({
   const history = useHistory();
 
   if (isLogin) {
-    return <Character />;
+    return <CharacterPage />;
   }
 
   return (
