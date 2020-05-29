@@ -16,7 +16,7 @@ import { loginStyles } from "../../css/useStyles";
 
 type Props = {
   isLogin: boolean;
-  setEmail: Function;
+  setUsername: Function;
   setPassword: Function;
   onChange: Function;
   onSubmit: Function;
@@ -24,7 +24,7 @@ type Props = {
 
 const LoginForm = ({
   isLogin,
-  setEmail,
+  setUsername,
   setPassword,
   onChange,
   onSubmit,
@@ -54,12 +54,12 @@ const LoginForm = ({
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="이메일"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="아이디"
+            name="username"
+            autoComplete="username"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              onChange(e, setEmail)
+              onChange(e, setUsername)
             }
             autoFocus
           />

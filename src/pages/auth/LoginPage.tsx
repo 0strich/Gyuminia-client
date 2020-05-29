@@ -6,22 +6,25 @@ import LoginForm from "../../components/auth/LoginForm";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const isLogin = useSelector((state: reducerState) => state.auth.isLogin);
 
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     callback: Function
-  ) => callback(e.target.value);
+  ) => {
+    console.log(e.target);
+    callback(e.target.value);
+  };
 
-  const onSubmit = () => dispatch(login(email, password));
+  const onSubmit = () => dispatch(login(username, password));
 
   return (
     <div>
       <LoginForm
         isLogin={isLogin}
-        setEmail={setEmail}
+        setUsername={setUsername}
         setPassword={setPassword}
         onChange={onChange}
         onSubmit={onSubmit}
