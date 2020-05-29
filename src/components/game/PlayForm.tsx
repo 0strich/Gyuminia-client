@@ -5,7 +5,7 @@ import Fight from "./playButtons/Fight";
 import Avoid from "./playButtons/Avoid";
 import { playStyles } from "../../css/useStyles";
 
-const Play = () => {
+const PlayForm = () => {
   const playStyle = playStyles();
   const [isAdventure, setAdventure] = useState(false);
 
@@ -39,4 +39,4 @@ const Play = () => {
   );
 };
 
-export default Play;
+export default PlayForm;
