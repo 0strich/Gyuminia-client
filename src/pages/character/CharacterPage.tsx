@@ -1,7 +1,10 @@
 import React from "react";
-import CharacterForm from "../../components/character/CharacterForm";
 import { useSelector } from "react-redux";
 import { reducerState } from "../../modules";
+import CharacterForm from "../../components/character/CharacterForm";
+import Loading from "../../components/etc/Loading";
+
+const isEmpty = require("lodash.isempty");
 
 const CharacterPage = () => {
   const charInfo = useSelector(
@@ -10,7 +13,7 @@ const CharacterPage = () => {
 
   return (
     <div>
-      <CharacterForm charInfo={charInfo} />
+      {!isEmpty(charInfo) ? <CharacterForm charInfo={charInfo} /> : <Loading />}
     </div>
   );
 };

@@ -9,7 +9,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { useHistory } from "react-router-dom";
 import { characterStyles } from "../../css/useStyles";
-import Loading from "../../components/etc/Loading";
 
 type Props = { charInfo: any };
 
@@ -70,23 +69,6 @@ const CharacterForm = ({ charInfo }: Props) => {
     </Grid>
   );
 
-  const charExist = () => {
-    return (
-      <>
-        {charInfo.map((char: any) =>
-          characterCard(
-            char.id,
-            char.character_name,
-            char.hp,
-            char.attack,
-            char.exp
-          )
-        )}
-        {skeletonCard()}
-      </>
-    );
-  };
-
   /* 렌더링 */
   return (
     <div>
@@ -100,7 +82,16 @@ const CharacterForm = ({ charInfo }: Props) => {
       </AppBar>
       <br />
       <Grid container spacing={3}>
-        {charInfo[0] ? charExist() : <Loading />}
+        {charInfo.map((char: any) =>
+          characterCard(
+            char.id,
+            char.character_name,
+            char.hp,
+            char.attack,
+            char.exp
+          )
+        )}
+        {skeletonCard()}
       </Grid>
     </div>
   );
