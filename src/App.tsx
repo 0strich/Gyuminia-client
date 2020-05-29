@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import Game from "./components/game/Game";
+import GamePage from "./pages/game/GamePage";
 import Store from "./components/game/Store";
 import HomePage from "./pages/home/HomePage";
 import LoginPage from "./pages/auth/LoginPage";
@@ -24,7 +24,7 @@ function App() {
               <Route exact path="/signup" component={SignupPage} />
               <Route exact path="/rank" component={RankPage} />
               <Route exact path="/character" component={CharacterPage} />
-              <Route exact path="/game" component={Game} />
+              <Route exact path="/game" component={GamePage} />
               <Route exact path="/store" component={Store} />
               <Route path="/" component={HomePage} />
             </Switch>

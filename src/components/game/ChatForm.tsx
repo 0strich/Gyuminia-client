@@ -14,7 +14,7 @@ import { chatStyles } from "../../css/useStyles";
 
 type Anchor = "chat";
 
-const Chat = () => {
+const ChatForm = () => {
   const chatStyle = chatStyles();
   const [state, setState] = useState({ chat: false });
   const history = useHistory();
@@ -96,4 +96,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default ChatForm;
