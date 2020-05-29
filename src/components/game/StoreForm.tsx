@@ -10,7 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import { storeStyles } from "../../css/useStyles";
 import { useHistory } from "react-router-dom";
 
-type Props = { weapons: any };
+type Props = { weapons: Array<any> };
 
 const StoreForm = ({ weapons }: Props) => {
   const storeStyle = storeStyles();

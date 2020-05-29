@@ -7,9 +7,7 @@ import Loading from "../../components/etc/Loading";
 const isEmpty = require("lodash.isempty");
 
 const CharacterPage = () => {
-  const charInfo = useSelector(
-    (state: reducerState) => state.authReducer.charInfo
-  );
+  const charInfo = useSelector((state: reducerState) => state.auth.charInfo);
 
   return (
     <div>

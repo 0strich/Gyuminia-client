@@ -6,7 +6,7 @@ import Loading from "../../components/etc/Loading";
 const isEmpty = require("lodash.isempty");
 
 const RankPage = () => {
-  const [charInfo, setCharInfo] = useState(null);
+  const [charInfo, setCharInfo] = useState([]);
 
   useEffect(() => {
     try {
