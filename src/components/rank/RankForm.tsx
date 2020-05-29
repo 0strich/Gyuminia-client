@@ -37,18 +37,6 @@ const StyledTableRow = withStyles((theme: Theme) =>
   })
 )(TableRow);
 
-const createData = (
-  rank: number,
-  characterName: string,
-  level: number,
-  hp: number,
-  attack: number,
-  rankScore: number,
-  last_access: string
-) => {
-  return { rank, characterName, level, hp, attack, rankScore, last_access };
-};
-
 type Props = { charInfo: any };
 
 // RankForm 컴포넌트
