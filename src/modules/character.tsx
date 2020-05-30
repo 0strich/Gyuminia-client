@@ -1,4 +1,5 @@
 import axios from "axios";
+import produce from "immer";
 import { Dispatch } from "redux";
 
 // actions
@@ -10,7 +11,6 @@ export const characterInfo = (): any => {
   return async (dispatch: Dispatch) => {
     try {
       const res = await axios.post("http://localhost:5001/characters/info");
-      console.log("character res ==> ", res.data);
       dispatch({ type: CHARACTER_INFO_SUCCESS, charInfo: res.data });
     } catch (err) {
       dispatch({ type: CHARACTER_INFO_FAIL, charInfo: [] });
@@ -27,9 +27,13 @@ const initState: stateType = { charInfo: [] };
 const character = (state: stateType = initState, action: actionType) => {
   switch (action.type) {
     case CHARACTER_INFO_SUCCESS:
-      return { ...state, charInfo: action.charInfo };
+      return produce(state, (draft) => {
+        draft.charInfo = action.charInfo;
+      });
     case CHARACTER_INFO_FAIL:
-      return { ...state, charInfo: action.charInfo };
+      return produce(state, (draft) => {
+        draft.charInfo = action.charInfo;
+      });
     default:
       return state;
   }

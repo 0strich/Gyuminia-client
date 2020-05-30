@@ -1,14 +1,13 @@
 import axios from "axios";
 import produce from "immer";
 import { Dispatch } from "redux";
+import { characterInfo } from "./character";
 
 // actions
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS" as const;
 export const LOGIN_FAIL = "LOGIN_FAIL" as const;
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS" as const;
 export const REGISTER_FAIL = "REGISTER_FAIL" as const;
-export const CHARACTER_INFO_SUCCESS = "CHARACTER_INFO_SUCCESS" as const;
-export const CHARACTER_INFO_FAIL = "CHARACTER_INFO_FAIL" as const;
 export const CHANGE_SIGNIN_STATE = "CHANGE_SIGNIN_STATE" as const;
 export const CHANGE_SIGNUP_STATE = "CHANGE_SIGNUP_STATE" as const;
 
@@ -24,14 +23,7 @@ export const signIn = (email: string, password: string): any => {
         password,
       });
       dispatch({ type: LOGIN_SUCCESS, success: res.data });
-
-      // 로그인된 계정의 캐릭터 계정 불러오기
-      try {
-        const res = await axios.post("http://localhost:5001/characters/info");
-        dispatch({ type: CHARACTER_INFO_SUCCESS, charInfo: res.data });
-      } catch (err) {
-        dispatch({ type: CHARACTER_INFO_FAIL, charInfo: {} });
-      }
+      dispatch(characterInfo());
     } catch (err) {
       dispatch({ type: LOGIN_FAIL, err });
     }
@@ -136,14 +128,6 @@ const auth = (state: stateType = initState, action: actionType) => {
     case CHANGE_SIGNUP_STATE:
       return produce(state, (draft) => {
         draft.signup[action.key] = action.value;
-      });
-    case CHARACTER_INFO_SUCCESS:
-      return produce(state, (draft) => {
-        draft.charInfo = action.charInfo;
-      });
-    case CHARACTER_INFO_FAIL:
-      return produce(state, (draft) => {
-        draft.charInfo = action.charInfo;
       });
     default:
       return state;
