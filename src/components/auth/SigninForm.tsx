@@ -20,7 +20,7 @@ type Props = {
   onSubmit: Function;
 };
 
-const LoginForm = ({ isLogin, onChange, onSubmit }: Props) => {
+const SigninForm = ({ isLogin, onChange, onSubmit }: Props) => {
   const loginStyle = loginStyles();
   const history = useHistory();
 
@@ -119,4 +119,4 @@ const LoginForm = ({ isLogin, onChange, onSubmit }: Props) => {
   );
 };
 
-export default LoginForm;
+export default SigninForm;

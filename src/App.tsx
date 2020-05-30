@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import GamePage from "./pages/game/GamePage";
 import HomePage from "./pages/home/HomePage";
-import LoginPage from "./pages/auth/LoginPage";
+import SigninPage from "./pages/auth/SigninPage";
 import SignupPage from "./pages/auth/SignupPage";
 import RankPage from "./pages/rank/RankPage";
 import CharacterPage from "./pages/character/CharacterPage";
@@ -20,7 +20,7 @@ function App() {
         <Container fixed>
           <Typography className="app" component="div">
             <Switch>
-              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/login" component={SigninPage} />
               <Route exact path="/signup" component={SignupPage} />
               <Route exact path="/rank" component={RankPage} />
               <Route exact path="/character" component={CharacterPage} />

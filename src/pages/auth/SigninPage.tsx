@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../modules/auth";
 import { reducerState } from "../../modules";
 import { changeSigninState } from "../../modules/auth";
-import LoginForm from "../../components/auth/LoginForm";
+import LoginForm from "../../components/auth/SigninForm";
 
-const LoginPage = () => {
+const SigninPage = () => {
   const dispatch = useDispatch();
   const { isLogin, signin } = useSelector((state: reducerState) => state.auth);
   const { username, password } = signin;
@@ -24,4 +24,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SigninPage;
