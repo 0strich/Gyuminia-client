@@ -19,10 +19,6 @@ import { SingupSuccess, SignupFail } from "../dialog/Dialog";
 type Props = {
   successOpen: boolean;
   failOpen: boolean;
-  setUsername: Function;
-  setEmail: Function;
-  setPassword: Function;
-  setMobile: Function;
   setSuccess: Function;
   setFail: Function;
   onChange: Function;
@@ -32,10 +28,6 @@ type Props = {
 const SignupForm = ({
   successOpen,
   failOpen,
-  setUsername,
-  setEmail,
-  setPassword,
-  setMobile,
   setSuccess,
   setFail,
   onChange,
@@ -66,23 +58,9 @@ const SignupForm = ({
                 id="username"
                 label="아이디"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  onChange(e, setUsername)
+                  onChange(e)
                 }
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="이메일"
-                name="email"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  onChange(e, setEmail)
-                }
-                autoComplete="email"
               />
             </Grid>
             <Grid item xs={12}>
@@ -95,9 +73,23 @@ const SignupForm = ({
                 type="password"
                 id="password"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  onChange(e, setPassword)
+                  onChange(e)
                 }
                 autoComplete="current-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="이메일"
+                name="email"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  onChange(e)
+                }
+                autoComplete="email"
               />
             </Grid>
             <Grid item xs={12}>
@@ -109,7 +101,7 @@ const SignupForm = ({
                 label="휴대전화"
                 name="mobile"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  onChange(e, setMobile)
+                  onChange(e)
                 }
                 autoComplete="mobile"
               />
