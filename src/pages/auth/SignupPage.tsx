@@ -1,28 +1,23 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import SignupForm from "../../components/auth/SignupForm";
+import { reducerState } from "../../modules";
+import { signUp, changeSignupState } from "../../modules/auth";
 
 const SignupPage = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [mobile, setMobile] = useState("");
+  const dispatch = useDispatch();
+  const { signup } = useSelector((state: reducerState) => state.auth);
+  const { username, password, email, mobile } = signup;
   const [successOpen, setSuccess] = useState(false);
   const [failOpen, setFail] = useState(false);
-  const postOption = { username, email, password, mobile };
 
-  const onChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    callback: Function
-  ) => callback(e.target.value);
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    dispatch(changeSignupState(name, value));
+  };
 
   const onSubmit = async () => {
-    try {
-      await axios.post("http://localhost:5001/users/signup", postOption);
-      setSuccess(true);
-    } catch (err) {
-      setFail(true);
-    }
+    dispatch(signUp(username, password, email, mobile, setSuccess, setFail));
   };
 
   return (
@@ -30,10 +25,6 @@ const SignupPage = () => {
       <SignupForm
         successOpen={successOpen}
         failOpen={failOpen}
-        setUsername={setUsername}
-        setEmail={setEmail}
-        setPassword={setPassword}
-        setMobile={setMobile}
         setSuccess={setSuccess}
         setFail={setFail}
         onChange={onChange}

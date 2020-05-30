@@ -16,19 +16,11 @@ import { loginStyles } from "../../css/useStyles";
 
 type Props = {
   isLogin: boolean;
-  setUsername: Function;
-  setPassword: Function;
   onChange: Function;
   onSubmit: Function;
 };
 
-const LoginForm = ({
-  isLogin,
-  setUsername,
-  setPassword,
-  onChange,
-  onSubmit,
-}: Props) => {
+const LoginForm = ({ isLogin, onChange, onSubmit }: Props) => {
   const loginStyle = loginStyles();
   const history = useHistory();
 
@@ -58,9 +50,7 @@ const LoginForm = ({
             label="아이디"
             name="username"
             autoComplete="username"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              onChange(e, setUsername)
-            }
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
             autoFocus
           />
           <TextField
@@ -72,9 +62,7 @@ const LoginForm = ({
             label="비밀번호"
             type="password"
             id="password"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              onChange(e, setPassword)
-            }
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
             autoComplete="current-password"
           />
           <FormControlLabel
