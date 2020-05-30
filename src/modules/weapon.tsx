@@ -1,4 +1,5 @@
 import axios from "axios";
+import produce from "immer";
 import { Dispatch } from "redux";
 
 // actions
@@ -28,9 +29,13 @@ const initState: stateType = { weapons: [] };
 const weapon = (state: stateType = initState, action: actionType) => {
   switch (action.type) {
     case WEAPON_DATA_SUCCESS:
-      return { ...state, weapons: action.weapons };
+      return produce(state, (draft) => {
+        draft.weapons = action.weapons;
+      });
     case WEAPON_DATA_FAIL:
-      return { ...state, weapons: action.weapons };
+      return produce(state, (draft) => {
+        draft.weapons = action.weapons;
+      });
     default:
       return state;
   }
