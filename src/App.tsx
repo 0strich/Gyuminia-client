@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import AuthRoute from "./components/auth/AuthRoute";
+import AuthRoute from "./pages/auth/AuthRoute";
 import GamePage from "./pages/game/GamePage";
 import HomePage from "./pages/home/HomePage";
 import SigninPage from "./pages/auth/SigninPage";
@@ -23,11 +23,10 @@ const App = () => {
             <Switch>
               <Route exact path="/login" component={SigninPage} />
               <Route exact path="/signup" component={SignupPage} />
-              {/* <Route exact path="/rank" component={RankPage} /> */}
-              <AuthRoute exact path="/rank" component={RankPage} />
-              <Route exact path="/character" component={CharacterPage} />
-              <Route exact path="/game" component={GamePage} />
-              <Route exact path="/store" component={StorePage} />
+              <Route exact path="/rank" component={RankPage} />
+              <AuthRoute exact path="/character" component={CharacterPage} />
+              <AuthRoute exact path="/game" component={GamePage} />
+              <AuthRoute exact path="/store" component={StorePage} />
               <Route path="/" component={HomePage} />
             </Switch>
           </Typography>
