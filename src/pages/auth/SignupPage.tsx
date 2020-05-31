@@ -16,7 +16,7 @@ const SignupPage = () => {
     dispatch(changeSignupState(name, value));
   };
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     dispatch(signUp(username, password, email, mobile, setSuccess, setFail));
   };
 
