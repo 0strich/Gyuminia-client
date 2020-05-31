@@ -15,7 +15,9 @@ const SigninPage = () => {
     dispatch(changeSigninState(name, value));
   };
 
-  const onSubmit = () => dispatch(signIn(username, password));
+  const onSubmit = () => {
+    dispatch(signIn(username, password));
+  };
 
   return (
     <div>

@@ -1,5 +1,5 @@
 import React from "react";
-import CharacterPage from "../../pages/character/CharacterPage";
+import HomePage from "../../pages/home/HomePage";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -25,7 +25,7 @@ const SigninForm = ({ isLogin, onChange, onSubmit }: Props) => {
   const history = useHistory();
 
   if (isLogin) {
-    return <CharacterPage />;
+    return <HomePage />;
   }
 
   return (
