@@ -11,9 +11,6 @@ export const REGISTER_FAIL = "REGISTER_FAIL" as const;
 export const CHANGE_SIGNIN_STATE = "CHANGE_SIGNIN_STATE" as const;
 export const CHANGE_SIGNUP_STATE = "CHANGE_SIGNUP_STATE" as const;
 
-// withCredentials
-axios.defaults.withCredentials = true;
-
 // action creators
 export const signIn = (email: string, password: string): any => {
   return async (dispatch: Dispatch) => {
@@ -22,7 +19,9 @@ export const signIn = (email: string, password: string): any => {
         email,
         password,
       });
-      dispatch({ type: LOGIN_SUCCESS, success: res.data });
+      localStorage.setItem("accessToken", res.data.accessToken);
+      localStorage.setItem("refreshToken", res.data.refreshToken);
+      dispatch({ type: LOGIN_SUCCESS, success: "success" });
       dispatch(characterInfo());
     } catch (err) {
       dispatch({ type: LOGIN_FAIL, err });
