@@ -25,7 +25,7 @@ const CharacterForm = ({ charInfo, newCharProps }: Props) => {
     attack: string,
     exp: string
   ) => (
-    <Grid item xs={4}>
+    <Grid key={order} item xs={4}>
       <Card className={characterStyle.root}>
         <CardContent>
           <Typography
@@ -79,15 +79,15 @@ const CharacterForm = ({ charInfo, newCharProps }: Props) => {
       </AppBar>
       <br />
       <Grid container spacing={3}>
-        {charInfo.map((char: any) =>
-          characterCard(
-            char.id,
-            char.character_name,
+        {charInfo.map((char: any) => {
+          return characterCard(
+            charInfo.indexOf(char) + 1,
+            char.characterName,
             char.hp,
             char.attack,
             char.exp
-          )
-        )}
+          );
+        })}
         {skeletonCard()}
       </Grid>
     </div>

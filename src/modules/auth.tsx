@@ -1,7 +1,6 @@
 import axios from "axios";
 import produce from "immer";
 import { Dispatch } from "redux";
-import { characterInfo } from "./character";
 import { history } from "../index";
 
 // actions
@@ -30,7 +29,6 @@ export const signIn = (username: string, password: string): any => {
         userId: res.data.userId,
       });
       history.push("/home");
-      dispatch(characterInfo(res.data.userId));
     } catch (err) {
       dispatch({ type: SIGN_IN_FAIL, err });
     }

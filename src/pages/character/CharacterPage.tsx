@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { reducerState } from "../../modules";
 import CharacterForm from "../../components/character/CharacterForm";
-import { newChar } from "../../modules/character";
+import { characterInfo, newChar } from "../../modules/character";
+import Loading from "../../components/etc/Loading";
+import { isEmpty } from "../../index";
 
 export type newCharPropsType = {
   open: boolean;
@@ -32,9 +34,18 @@ const CharacterPage = () => {
     newCharSubmit,
   };
 
+  useEffect(() => {
+    dispatch(characterInfo(userId));
+    // eslint-disable-next-line
+  }, [dispatch]);
+
   return (
     <div>
-      <CharacterForm charInfo={charInfo} newCharProps={newCharProps} />
+      {isEmpty(charInfo) ? (
+        <Loading />
+      ) : (
+        <CharacterForm charInfo={charInfo} newCharProps={newCharProps} />
+      )}
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { weaponData } from "../../modules/weapon";
 import { reducerState } from "../../modules";
 import StoreForm from "../../components/game/StoreForm";
 import Loading from "../../components/etc/Loading";
-const isEmpty = require("lodash.isempty");
+import { isEmpty } from "../../index";
 
 const StorePage = () => {
   const dispatch = useDispatch();
