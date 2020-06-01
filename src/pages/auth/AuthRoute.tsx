@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { refresh } from "../../modules/token";
+import TokenExpireModal from "../../components/etc/TokenExpireModal";
 
 type Props = { component: any; rest: any };
 
@@ -24,6 +25,8 @@ const AuthRoute = ({ component: Component, ...rest }: any) => {
     try {
       if (checkExpire(accessToken)) {
         if (checkExpire(refreshToken)) {
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
           return false;
         } else {
           dispatch(refresh());
@@ -40,7 +43,7 @@ const AuthRoute = ({ component: Component, ...rest }: any) => {
     <Route
       {...rest}
       render={(props) =>
-        checkAuth() ? <Component {...props} /> : <Redirect to="/signin" />
+        checkAuth() ? <Component {...props} /> : <TokenExpireModal />
       }
     />
   );
