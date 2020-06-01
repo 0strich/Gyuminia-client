@@ -1,4 +1,5 @@
 import React from "react";
+import HomePage from "../../pages/home/HomePage";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -25,6 +26,7 @@ const SigninForm = ({ isLogin, onChange, onSubmit }: Props) => {
 
   return (
     <Container component="main" maxWidth="xs">
+      {/* <Container fixed> */}
       <CssBaseline />
       <div className={loginStyle.paper}>
         <Typography component="h1" variant="h5">
@@ -97,7 +99,7 @@ const SigninForm = ({ isLogin, onChange, onSubmit }: Props) => {
             <Grid item>
               <Link
                 variant="body2"
-                onClick={() => history.push("/signup")}
+                onClick={() => history.push("/auth/signup")}
                 style={{ cursor: "pointer" }}
               >
                 계정이 없으신가요? 회원가입
