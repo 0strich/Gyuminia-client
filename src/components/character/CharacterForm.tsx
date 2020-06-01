@@ -1,4 +1,5 @@
 import React from "react";
+import NewCharacter from "../../components/dialog/NewCharacter";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -9,10 +10,11 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { useHistory } from "react-router-dom";
 import { characterStyles } from "../../css/useStyles";
+import { newCharPropsType } from "../../pages/character/CharacterPage";
 
-type Props = { charInfo: Array<any> };
+type Props = { charInfo: Array<any>; newCharProps: newCharPropsType };
 
-const CharacterForm = ({ charInfo }: Props) => {
+const CharacterForm = ({ charInfo, newCharProps }: Props) => {
   const characterStyle = characterStyles();
   const history = useHistory();
 
@@ -62,9 +64,7 @@ const CharacterForm = ({ charInfo }: Props) => {
           <Skeleton variant="text" animation="wave" />
           <Skeleton variant="rect" animation="wave" width={400} height={100} />
         </div>
-        <Button color="primary" size="large">
-          캐릭터 만들기
-        </Button>
+        <NewCharacter newCharProps={newCharProps} />
       </Card>
     </Grid>
   );
@@ -75,9 +75,6 @@ const CharacterForm = ({ charInfo }: Props) => {
       <AppBar position="static" color="primary">
         <Toolbar style={{ justifyContent: "center" }}>
           <Typography variant="h5">캐릭터</Typography>
-          <Button color="inherit" style={{ justifyContent: "right" }}>
-            로그아웃
-          </Button>
         </Toolbar>
       </AppBar>
       <br />

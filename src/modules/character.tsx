@@ -21,9 +21,20 @@ export const characterInfo = (userId: number): any => {
   };
 };
 
+export const newChar = (userId: number | null, characterName: string) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      await axios.post("http://localhost:5001/characters/new", {
+        userId,
+        characterName,
+      });
+    } catch (err) {}
+  };
+};
+
 // types
 type stateType = { charInfo: Array<any> };
-type actionType = ReturnType<typeof characterInfo>;
+type actionType = ReturnType<typeof characterInfo> | ReturnType<typeof newChar>;
 const initState: stateType = { charInfo: [] };
 
 // reducer
