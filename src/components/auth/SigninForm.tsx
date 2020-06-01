@@ -14,18 +14,16 @@ import { useHistory } from "react-router-dom";
 import { loginStyles } from "../../css/useStyles";
 
 type Props = {
-  isLogin: boolean;
   onChange: Function;
   onSubmit: Function;
 };
 
-const SigninForm = ({ isLogin, onChange, onSubmit }: Props) => {
+const SigninForm = ({ onChange, onSubmit }: Props) => {
   const loginStyle = loginStyles();
   const history = useHistory();
 
   return (
     <Container component="main" maxWidth="xs">
-      {/* <Container fixed> */}
       <CssBaseline />
       <div className={loginStyle.paper}>
         <Typography component="h1" variant="h5">
@@ -98,7 +96,7 @@ const SigninForm = ({ isLogin, onChange, onSubmit }: Props) => {
             <Grid item>
               <Link
                 variant="body2"
-                onClick={() => history.push("/auth/signup")}
+                onClick={() => history.push("/signup")}
                 style={{ cursor: "pointer" }}
               >
                 계정이 없으신가요? 회원가입

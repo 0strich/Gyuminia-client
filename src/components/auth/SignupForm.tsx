@@ -1,7 +1,6 @@
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -14,31 +13,22 @@ import Container from "@material-ui/core/Container";
 import Copyright from "../common/Copyright";
 import { useHistory } from "react-router-dom";
 import { signupStyles } from "../../css/useStyles";
-import { SingupSuccess, SignupFail } from "../dialog/Dialog";
+import SignupDialog from "../etc/SignupDialog";
 
 type Props = {
-  successOpen: boolean;
-  failOpen: boolean;
-  setSuccess: Function;
-  setFail: Function;
   onChange: Function;
   onSubmit: Function;
+  signupAuthStatus: number | null;
 };
 
-const SignupForm = ({
-  successOpen,
-  failOpen,
-  setSuccess,
-  setFail,
-  onChange,
-  onSubmit,
-}: Props) => {
+const SignupForm = ({ onChange, onSubmit, signupAuthStatus }: Props) => {
   const history = useHistory();
   const signupStyle = signupStyles();
 
+  console.log(signupAuthStatus);
+
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={signupStyle.paper}>
         <Avatar className={signupStyle.avatar}>
           <LockOutlinedIcon />
@@ -78,6 +68,7 @@ const SignupForm = ({
                 autoComplete="current-password"
               />
             </Grid>
+
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -90,20 +81,6 @@ const SignupForm = ({
                   onChange(e)
                 }
                 autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="mobile"
-                label="휴대전화"
-                name="mobile"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  onChange(e)
-                }
-                autoComplete="mobile"
               />
             </Grid>
             <Grid item xs={12}>
@@ -122,14 +99,9 @@ const SignupForm = ({
           >
             회원가입
           </Button>
-          <SingupSuccess
-            successOpen={successOpen}
-            handleSuccessClose={() => setSuccess(false)}
-          />
-          <SignupFail
-            failOpen={failOpen}
-            handleFailClose={() => setFail(false)}
-          />
+          {signupAuthStatus && (
+            <SignupDialog signupAuthStatus={signupAuthStatus} />
+          )}
           <Grid container justify="flex-end">
             <Grid item>
               <Link
