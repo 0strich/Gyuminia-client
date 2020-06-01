@@ -27,6 +27,7 @@ export const signIn = (email: string, password: string): any => {
         type: SIGN_IN_SUCCESS,
         success: "success",
         username: res.data.username,
+        userId: res.data.userId,
       });
       history.push("/home");
       dispatch(characterInfo(res.data.userId));
@@ -81,7 +82,7 @@ export const changeSigninState = (key: string, value: string): Object => {
   };
 };
 
-export const changeSignupState = (key: string, value: string): any => {
+export const changeSignupState = (key: string, value: string): Object => {
   return {
     type: CHANGE_SIGNUP_STATE,
     key,
@@ -95,6 +96,7 @@ type stateType = {
   signup: any;
   isLogin: boolean;
   username: string;
+  userId: number | null;
   authSuccess: any;
   authError: any;
   charInfo: Array<any>;
@@ -111,6 +113,7 @@ const initState: stateType = {
   signup: {},
   isLogin: false,
   username: "",
+  userId: null,
   authSuccess: null,
   authError: null,
   charInfo: [],
@@ -124,6 +127,7 @@ const auth = (state: stateType = initState, action: actionType) => {
         draft.isLogin = true;
         draft.authSuccess = action.success;
         draft.username = action.username;
+        draft.userId = action.userId;
         draft.signin = {};
       });
     case SIGN_IN_FAIL:

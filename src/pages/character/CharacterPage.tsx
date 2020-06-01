@@ -1,19 +1,40 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { reducerState } from "../../modules";
 import CharacterForm from "../../components/character/CharacterForm";
-import Loading from "../../components/etc/Loading";
+import { newChar } from "../../modules/character";
 
-const isEmpty = require("lodash.isempty");
+export type newCharPropsType = {
+  open: boolean;
+  handleClickOpen: any;
+  handleClose: any;
+  setCharacterName: Function;
+  newCharSubmit: Function;
+};
 
 const CharacterPage = () => {
-  const charInfo = useSelector(
-    (state: reducerState) => state.character.charInfo
-  );
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const [characterName, setCharacterName] = useState("");
+  const { charInfo } = useSelector((state: reducerState) => state.character);
+  const { userId } = useSelector((state: reducerState) => state.auth);
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const newCharSubmit = () => {
+    dispatch(newChar(userId, characterName));
+  };
+
+  const newCharProps = {
+    open,
+    handleClickOpen,
+    handleClose,
+    setCharacterName,
+    newCharSubmit,
+  };
 
   return (
     <div>
-      {!isEmpty(charInfo) ? <CharacterForm charInfo={charInfo} /> : <Loading />}
+      <CharacterForm charInfo={charInfo} newCharProps={newCharProps} />
     </div>
   );
 };
