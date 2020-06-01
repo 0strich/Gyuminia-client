@@ -63,6 +63,7 @@ export const signOut = () => {
   return async (dispatch: Dispatch) => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    history.push("/");
     // 로그아웃 api 요청 필요
     dispatch({ type: SIGN_OUT });
   };
