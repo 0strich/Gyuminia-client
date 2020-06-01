@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 import { homeStyles } from "../../css/useStyles";
 
+// need props
+// username(ID)
 const HomeForm = () => {
   const homeStyle = homeStyles();
   const history = useHistory();
@@ -17,14 +19,8 @@ const HomeForm = () => {
           <Typography variant="h6" className={homeStyle.title}>
             Welcome To Gyuminia
           </Typography>
-          <Button color="inherit" onClick={() => history.push("/login")}>
-            로그인
-          </Button>
-          <Button color="inherit" onClick={() => history.push("/signup")}>
-            회원가입
-          </Button>
-          <Button color="inherit" onClick={() => history.push("/rank")}>
-            캐릭터 랭킹
+          <Button color="inherit" onClick={() => history.push("/signout")}>
+            로그아웃
           </Button>
         </Toolbar>
       </AppBar>

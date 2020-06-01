@@ -2,12 +2,14 @@ import axios from "axios";
 import produce from "immer";
 import { Dispatch } from "redux";
 import { characterInfo } from "./character";
+import { history } from "../index";
 
 // actions
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS" as const;
-export const LOGIN_FAIL = "LOGIN_FAIL" as const;
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS" as const;
-export const REGISTER_FAIL = "REGISTER_FAIL" as const;
+export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS" as const;
+export const SIGN_IN_FAIL = "SIGN_IN_FAIL" as const;
+export const SIGN_OUT = "SIGN_OUT" as const;
+export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS" as const;
+export const SIGN_UP_FAIL = "SIGN_UP_FAIL" as const;
 export const CHANGE_SIGNIN_STATE = "CHANGE_SIGNIN_STATE" as const;
 export const CHANGE_SIGNUP_STATE = "CHANGE_SIGNUP_STATE" as const;
 
@@ -21,10 +23,11 @@ export const signIn = (email: string, password: string): any => {
       });
       localStorage.setItem("accessToken", res.data.accessToken);
       localStorage.setItem("refreshToken", res.data.refreshToken);
-      dispatch({ type: LOGIN_SUCCESS, success: "success" });
+      dispatch({ type: SIGN_IN_SUCCESS, success: "success" });
+      history.push("/home");
       dispatch(characterInfo());
     } catch (err) {
-      dispatch({ type: LOGIN_FAIL, err });
+      dispatch({ type: SIGN_IN_FAIL, err });
     }
   };
 };
@@ -48,11 +51,20 @@ export const signUp = (
         setFail,
       });
       setSuccess(true);
-      dispatch({ type: REGISTER_SUCCESS, success: res.data });
+      dispatch({ type: SIGN_UP_SUCCESS, success: res.data });
     } catch (err) {
       setFail(true);
-      dispatch({ type: REGISTER_FAIL, err });
+      dispatch({ type: SIGN_UP_FAIL, err });
     }
+  };
+};
+
+export const signOut = () => {
+  return async (dispatch: Dispatch) => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    // 로그아웃 api 요청 필요
+    dispatch({ type: SIGN_OUT });
   };
 };
 
@@ -89,8 +101,8 @@ type actionType =
   | ReturnType<typeof changeSignupState>;
 
 const initState: stateType = {
-  signin: { username: "", password: "" },
-  signup: { username: "", password: "", email: "", mobile: "" },
+  signin: {},
+  signup: {},
   isLogin: false,
   authSuccess: null,
   authError: null,
@@ -100,25 +112,33 @@ const initState: stateType = {
 // reducer
 const auth = (state: stateType = initState, action: actionType) => {
   switch (action.type) {
-    case LOGIN_SUCCESS:
+    case SIGN_IN_SUCCESS:
       return produce(state, (draft) => {
         draft.isLogin = true;
         draft.authSuccess = action.success;
+        draft.signin = {};
       });
-    case LOGIN_FAIL:
+    case SIGN_IN_FAIL:
       return produce(state, (draft) => {
         draft.isLogin = false;
         draft.authError = action.err;
+        draft.signin = {};
       });
-    case REGISTER_SUCCESS:
+    case SIGN_OUT:
+      return produce(state, (draft) => {
+        draft.isLogin = false;
+      });
+    case SIGN_UP_SUCCESS:
       return produce(state, (draft) => {
         draft.isLogin = true;
         draft.authSuccess = action.success;
+        draft.signup = {};
       });
-    case REGISTER_FAIL:
+    case SIGN_UP_FAIL:
       return produce(state, (draft) => {
         draft.isLogin = true;
         draft.authError = action.err;
+        draft.signup = {};
       });
     case CHANGE_SIGNIN_STATE:
       return produce(state, (draft) => {
