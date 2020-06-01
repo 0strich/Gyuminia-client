@@ -1,13 +1,14 @@
 import axios from "axios";
 import produce from "immer";
 import { Dispatch } from "redux";
+// import { history } from "../index";
 
 // actions
 const CHARACTER_INFO_SUCCESS = "CHARACTER_INFO_SUCCESS" as const;
 const CHARACTER_INFO_FAIL = "CHARACTER_INFO_FAIL" as const;
 
 // action creators
-export const characterInfo = (userId: number): any => {
+export const characterInfo = (userId: number | null): any => {
   return async (dispatch: Dispatch) => {
     try {
       const res = await axios.post("http://localhost:5001/characters/info", {
@@ -24,11 +25,14 @@ export const characterInfo = (userId: number): any => {
 export const newChar = (userId: number | null, characterName: string) => {
   return async (dispatch: Dispatch) => {
     try {
-      await axios.post("http://localhost:5001/characters/new", {
+      await axios.post("http://localhost:5001/characters/newChar", {
         userId,
         characterName,
       });
-    } catch (err) {}
+      window.history.go();
+    } catch (err) {
+      console.log("err => ", err);
+    }
   };
 };
 

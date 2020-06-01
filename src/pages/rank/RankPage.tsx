@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import RankForm from "../../components/rank/RankForm";
 import Loading from "../../components/etc/Loading";
-
-const isEmpty = require("lodash.isempty");
+import { isEmpty } from "../../index";
 
 const RankPage = () => {
   const [charInfo, setCharInfo] = useState([]);

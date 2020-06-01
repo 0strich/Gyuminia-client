@@ -11,6 +11,7 @@ import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 import Loading from "./components/etc/Loading";
 
+export const isEmpty = require("lodash.isempty");
 export const history = require("history").createBrowserHistory();
 
 const persistConfigure = {

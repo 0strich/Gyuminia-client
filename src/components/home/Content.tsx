@@ -40,6 +40,7 @@ const Content = ({ username }: Props) => {
                 <Button
                   variant="contained"
                   color="primary"
+                  size="large"
                   onClick={() => history.push("/character")}
                 >
                   게임 시작
@@ -49,6 +50,7 @@ const Content = ({ username }: Props) => {
                 <Button
                   variant="outlined"
                   color="primary"
+                  size="large"
                   onClick={() => history.push("/rank")}
                 >
                   랭킹 보기
