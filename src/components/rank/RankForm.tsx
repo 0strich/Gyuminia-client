@@ -36,12 +36,15 @@ const StyledTableRow = withStyles((theme: Theme) =>
   })
 )(TableRow);
 
-type Props = { charInfo: Array<any> };
+type Props = { rankInfo: Array<any> };
 
 // RankForm 컴포넌트
-const RankForm = ({ charInfo }: Props) => {
+const RankForm = ({ rankInfo }: Props) => {
   const rankinnStyle = rankingStyles();
   const history = useHistory();
+
+  const deepCopy = [...rankInfo];
+  const rankSort = deepCopy.sort((a, b) => b.rankScore - a.rankScore);
 
   return (
     <div>
@@ -65,11 +68,10 @@ const RankForm = ({ charInfo }: Props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {charInfo.map((row: any) => (
+            {rankSort.map((row: any) => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row">
-                  {/* {row.rank} */}
-                  {row.id}
+                  {rankSort.indexOf(row) + 1}
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   {row.characterName}
