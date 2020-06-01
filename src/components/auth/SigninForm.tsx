@@ -12,13 +12,15 @@ import Container from "@material-ui/core/Container";
 import Copyright from "../common/Copyright";
 import { useHistory } from "react-router-dom";
 import { loginStyles } from "../../css/useStyles";
+import SigninDialog from "../etc/SigninDialog";
 
 type Props = {
   onChange: Function;
   onSubmit: Function;
+  signinAuthStatus: number | null;
 };
 
-const SigninForm = ({ onChange, onSubmit }: Props) => {
+const SigninForm = ({ onChange, onSubmit, signinAuthStatus }: Props) => {
   const loginStyle = loginStyles();
   const history = useHistory();
 
@@ -74,6 +76,9 @@ const SigninForm = ({ onChange, onSubmit }: Props) => {
               >
                 로그인
               </Button>
+              {signinAuthStatus && signinAuthStatus !== 200 && (
+                <SigninDialog signinAuthStatus={signinAuthStatus} />
+              )}
             </Grid>
             <Grid item xs={6}>
               <Button

@@ -26,10 +26,11 @@ export const signIn = (username: string, password: string): any => {
         type: SIGN_IN_SUCCESS,
         username: res.data.username,
         userId: res.data.userId,
+        signinAuthStatus: res.data.status,
       });
       history.push("/home");
     } catch (err) {
-      dispatch({ type: SIGN_IN_FAIL, err });
+      dispatch({ type: SIGN_IN_FAIL, signinAuthStatus: err.response.status });
     }
   };
 };
@@ -84,6 +85,7 @@ type stateType = {
   signin: any;
   signup: any;
   signupAuthStatus: number | null;
+  signinAuthStatus: number | null;
   isLogin: boolean;
   username: string;
   userId: number | null;
@@ -100,6 +102,7 @@ const initState: stateType = {
   signin: {},
   signup: {},
   signupAuthStatus: null,
+  signinAuthStatus: null,
   isLogin: false,
   username: "",
   userId: null,
@@ -114,11 +117,13 @@ const auth = (state: stateType = initState, action: actionType) => {
         draft.isLogin = true;
         draft.username = action.username;
         draft.userId = action.userId;
+        draft.signinAuthStatus = action.signinAuthStatus;
         draft.signin = {};
       });
     case SIGN_IN_FAIL:
       return produce(state, (draft) => {
         draft.isLogin = false;
+        draft.signinAuthStatus = action.signinAuthStatus;
         draft.signin = {};
       });
     case SIGN_OUT:
@@ -128,14 +133,14 @@ const auth = (state: stateType = initState, action: actionType) => {
     case SIGN_UP_SUCCESS:
       return produce(state, (draft) => {
         draft.isLogin = true;
-        draft.signup = {};
         draft.signupAuthStatus = action.signupAuthStatus;
+        draft.signup = {};
       });
     case SIGN_UP_FAIL:
       return produce(state, (draft) => {
         draft.isLogin = true;
-        draft.signup = {};
         draft.signupAuthStatus = action.signupAuthStatus;
+        draft.signup = {};
       });
     case CHANGE_SIGNIN_STATE:
       return produce(state, (draft) => {
