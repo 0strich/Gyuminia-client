@@ -6,9 +6,11 @@ import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 import { homeStyles } from "../../css/useStyles";
 
+type Props = { onSubmit: Function };
+
 // need props
 // username(ID)
-const HomeForm = () => {
+const HomeForm = ({ onSubmit }: Props) => {
   const homeStyle = homeStyles();
   const history = useHistory();
 
@@ -19,7 +21,7 @@ const HomeForm = () => {
           <Typography variant="h6" className={homeStyle.title}>
             Welcome To Gyuminia
           </Typography>
-          <Button color="inherit" onClick={() => history.push("/signout")}>
+          <Button color="inherit" onClick={() => onSubmit()}>
             로그아웃
           </Button>
         </Toolbar>
