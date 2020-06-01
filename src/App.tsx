@@ -22,12 +22,12 @@ const App = () => {
         <Container fixed>
           <Typography className="app" component="div">
             <Switch>
-              <Route exact path="/signup" component={SignupPage} />
-              <Route exact path="/rank" component={RankPage} />
               <AuthRoute exact path="/character" component={CharacterPage} />
               <AuthRoute exact path="/game" component={GamePage} />
               <AuthRoute exact path="/store" component={StorePage} />
               <AuthRoute exact path="/home" component={HomePage} />
+              <Route exact path="/signup" component={SignupPage} />
+              <Route exact path="/rank" component={RankPage} />
               <Route path={["/", "/signin"]} component={SigninPage} />
             </Switch>
           </Typography>

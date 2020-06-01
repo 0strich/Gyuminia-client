@@ -6,28 +6,15 @@ import { Provider } from "react-redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 import reducer from "./modules";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { PersistGate } from "redux-persist/integration/react";
-import Loading from "./components/etc/Loading";
 
 export const isEmpty = require("lodash.isempty");
 export const history = require("history").createBrowserHistory();
 
-const persistConfigure = {
-  key: "root",
-  storage,
-};
-
-const persistedReducer = persistReducer(persistConfigure, reducer);
-const store = createStore(persistedReducer, applyMiddleware(logger, thunk));
-const persistor = persistStore(store);
+const store = createStore(reducer, applyMiddleware(logger, thunk));
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={<Loading />} persistor={persistor}>
-      <App />
-    </PersistGate>
+    <App />
   </Provider>,
   document.getElementById("root")
 );
