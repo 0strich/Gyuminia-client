@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { signIn } from "../../modules/auth";
 import { reducerState } from "../../modules";
 import { changeSigninState } from "../../modules/auth";
@@ -18,6 +19,10 @@ const SigninPage = () => {
   const onSubmit = () => {
     dispatch(signIn(username, password));
   };
+
+  if (localStorage.getItem("accessToken")) {
+    return <Redirect to="/home" />;
+  }
 
   return (
     <div>
