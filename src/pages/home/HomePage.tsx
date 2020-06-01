@@ -1,11 +1,13 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import HomeForm from "../../components/home/HomeForm";
+import { useDispatch, useSelector } from "react-redux";
+import { reducerState } from "../../modules";
+import Navigation from "../../components/home/Navigation";
 import Content from "../../components/home/Content";
 import { signOut } from "../../modules/auth";
 
 const HomePage = () => {
   const dispatch = useDispatch();
+  const { username } = useSelector((state: reducerState) => state.auth);
 
   const onSubmit = () => {
     dispatch(signOut());
@@ -13,8 +15,8 @@ const HomePage = () => {
 
   return (
     <>
-      <HomeForm onSubmit={onSubmit} />
-      <Content />
+      <Navigation onSubmit={onSubmit} username={username} />
+      <Content username={username} />
     </>
   );
 };

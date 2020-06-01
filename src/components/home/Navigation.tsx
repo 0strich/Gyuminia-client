@@ -5,11 +5,11 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { homeStyles } from "../../css/useStyles";
 
-type Props = { onSubmit: Function };
+type Props = { onSubmit: Function; username: string };
 
 // need props
 // username(ID)
-const HomeForm = ({ onSubmit }: Props) => {
+const Navigation = ({ onSubmit, username }: Props) => {
   const homeStyle = homeStyles();
 
   return (
@@ -19,6 +19,7 @@ const HomeForm = ({ onSubmit }: Props) => {
           <Typography variant="h6" className={homeStyle.title}>
             Welcome To Gyuminia
           </Typography>
+          <span>{username}</span>
           <Button color="inherit" onClick={() => onSubmit()}>
             로그아웃
           </Button>
@@ -28,4 +29,4 @@ const HomeForm = ({ onSubmit }: Props) => {
   );
 };
 
-export default HomeForm;
+export default Navigation;

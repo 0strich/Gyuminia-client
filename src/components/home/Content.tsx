@@ -6,7 +6,9 @@ import Container from "@material-ui/core/Container";
 import { useHistory } from "react-router-dom";
 import { contentStyles } from "../../css/useStyles";
 
-const Content = () => {
+type Props = { username: string };
+
+const Content = ({ username }: Props) => {
   const contentStyle = contentStyles();
   const history = useHistory();
 
@@ -29,7 +31,8 @@ const Content = () => {
             color="textSecondary"
             paragraph
           >
-            규미니아 포트폴리오 입니다! 반갑습니다!
+            반갑습니다 {username} 님!! <br />
+            규미니아 포트폴리오 입니다!
           </Typography>
           <div className={contentStyle.heroButtons}>
             <Grid container spacing={2} justify="center">
