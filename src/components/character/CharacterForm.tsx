@@ -1,5 +1,5 @@
 import React from "react";
-import NewCharacter from "../../components/dialog/NewCharacter";
+import NewCharacter from "../etc/NewCharacter";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";

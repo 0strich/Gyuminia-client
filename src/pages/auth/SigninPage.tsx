@@ -8,7 +8,7 @@ import LoginForm from "../../components/auth/SigninForm";
 
 const SigninPage = () => {
   const dispatch = useDispatch();
-  const { isLogin, signin } = useSelector((state: reducerState) => state.auth);
+  const { signin } = useSelector((state: reducerState) => state.auth);
   const { username, password } = signin;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +26,7 @@ const SigninPage = () => {
 
   return (
     <div>
-      <LoginForm isLogin={isLogin} onChange={onChange} onSubmit={onSubmit} />
+      <LoginForm onChange={onChange} onSubmit={onSubmit} />
     </div>
   );
 };
