@@ -14,11 +14,11 @@ export const CHANGE_SIGNIN_STATE = "CHANGE_SIGNIN_STATE" as const;
 export const CHANGE_SIGNUP_STATE = "CHANGE_SIGNUP_STATE" as const;
 
 // action creators
-export const signIn = (email: string, password: string): any => {
+export const signIn = (username: string, password: string): any => {
   return async (dispatch: Dispatch) => {
     try {
-      const res = await axios.post("http://localhost:5001/users/login", {
-        email,
+      const res = await axios.post("http://localhost:5001/users/signin", {
+        username,
         password,
       });
       localStorage.setItem("accessToken", res.data.accessToken);
