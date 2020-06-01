@@ -134,7 +134,7 @@ const SignupForm = ({
             <Grid item>
               <Link
                 variant="body2"
-                onClick={() => history.push("/login")}
+                onClick={() => history.push("/signin")}
                 style={{ cursor: "pointer" }}
               >
                 이미 계졍이 있으신가요? 로그인

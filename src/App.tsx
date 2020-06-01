@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
+import { history } from "./index";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -15,24 +16,24 @@ import "./css/App.css";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <React.Fragment>
         <CssBaseline />
         <Container fixed>
           <Typography className="app" component="div">
             <Switch>
-              <Route exact path="/login" component={SigninPage} />
+              <Route path="/signin" component={SigninPage} />
               <Route exact path="/signup" component={SignupPage} />
               <Route exact path="/rank" component={RankPage} />
               <AuthRoute exact path="/character" component={CharacterPage} />
               <AuthRoute exact path="/game" component={GamePage} />
               <AuthRoute exact path="/store" component={StorePage} />
-              <Route path="/" component={HomePage} />
+              <AuthRoute path={["/", "/home"]} component={HomePage} />
             </Switch>
           </Typography>
         </Container>
       </React.Fragment>
-    </BrowserRouter>
+    </Router>
   );
 };
 

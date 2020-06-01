@@ -2,25 +2,17 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
-const useStyles = makeStyles((theme) => ({
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
-}));
+import { useHistory } from "react-router-dom";
+import { contentStyles } from "../../css/useStyles";
 
 const Content = () => {
-  const classes = useStyles();
+  const contentStyle = contentStyles();
+  const history = useHistory();
 
   return (
     <div>
-      <div className={classes.heroContent}>
+      <div className={contentStyle.heroContent}>
         <Container maxWidth="sm">
           <Typography
             component="h1"
@@ -29,7 +21,7 @@ const Content = () => {
             color="textPrimary"
             gutterBottom
           >
-            Content layout
+            Welcome To Gyuminia
           </Typography>
           <Typography
             variant="h5"
@@ -37,20 +29,26 @@ const Content = () => {
             color="textSecondary"
             paragraph
           >
-            Something short and leading about the collection below—its contents,
-            the creator, etc. Make it short and sweet, but not too short so
-            folks don&apos;t simply skip over it entirely.
+            규미니아 포트폴리오 입니다! 반갑습니다!
           </Typography>
-          <div className={classes.heroButtons}>
+          <div className={contentStyle.heroButtons}>
             <Grid container spacing={2} justify="center">
               <Grid item>
-                <Button variant="contained" color="primary">
-                  Main call to action
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => history.push("/character")}
+                >
+                  게임 시작
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" color="primary">
-                  Secondary action
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => history.push("/rank")}
+                >
+                  랭킹 보기
                 </Button>
               </Grid>
             </Grid>
