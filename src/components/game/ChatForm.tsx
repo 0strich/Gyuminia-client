@@ -64,7 +64,7 @@ const ChatForm = () => {
       <Button
         variant="contained"
         color="primary"
-        onClick={() => history.push("/")}
+        onClick={() => history.push("/home")}
       >
         Home
       </Button>

@@ -23,9 +23,13 @@ export const signIn = (email: string, password: string): any => {
       });
       localStorage.setItem("accessToken", res.data.accessToken);
       localStorage.setItem("refreshToken", res.data.refreshToken);
-      dispatch({ type: SIGN_IN_SUCCESS, success: "success" });
+      dispatch({
+        type: SIGN_IN_SUCCESS,
+        success: "success",
+        username: res.data.username,
+      });
       history.push("/home");
-      dispatch(characterInfo());
+      dispatch(characterInfo(res.data.userId));
     } catch (err) {
       dispatch({ type: SIGN_IN_FAIL, err });
     }
@@ -90,6 +94,7 @@ type stateType = {
   signin: any;
   signup: any;
   isLogin: boolean;
+  username: string;
   authSuccess: any;
   authError: any;
   charInfo: Array<any>;
@@ -105,6 +110,7 @@ const initState: stateType = {
   signin: {},
   signup: {},
   isLogin: false,
+  username: "",
   authSuccess: null,
   authError: null,
   charInfo: [],
@@ -117,6 +123,7 @@ const auth = (state: stateType = initState, action: actionType) => {
       return produce(state, (draft) => {
         draft.isLogin = true;
         draft.authSuccess = action.success;
+        draft.username = action.username;
         draft.signin = {};
       });
     case SIGN_IN_FAIL:

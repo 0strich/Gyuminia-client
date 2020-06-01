@@ -7,12 +7,15 @@ const CHARACTER_INFO_SUCCESS = "CHARACTER_INFO_SUCCESS" as const;
 const CHARACTER_INFO_FAIL = "CHARACTER_INFO_FAIL" as const;
 
 // action creators
-export const characterInfo = (): any => {
+export const characterInfo = (userId: number): any => {
   return async (dispatch: Dispatch) => {
     try {
-      const res = await axios.post("http://localhost:5001/characters/info");
+      const res = await axios.post("http://localhost:5001/characters/info", {
+        userId,
+      });
       dispatch({ type: CHARACTER_INFO_SUCCESS, charInfo: res.data });
     } catch (err) {
+      console.log(err);
       dispatch({ type: CHARACTER_INFO_FAIL, charInfo: [] });
     }
   };

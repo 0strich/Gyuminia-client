@@ -10,9 +10,8 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 import Loading from "./components/etc/Loading";
-import createBrowserHistory from "history/createBrowserHistory";
 
-export const history = createBrowserHistory();
+export const history = require("history").createBrowserHistory();
 
 const persistConfigure = {
   key: "root",

@@ -3,7 +3,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router-dom";
 import { homeStyles } from "../../css/useStyles";
 
 type Props = { onSubmit: Function };
@@ -12,7 +11,6 @@ type Props = { onSubmit: Function };
 // username(ID)
 const HomeForm = ({ onSubmit }: Props) => {
   const homeStyle = homeStyles();
-  const history = useHistory();
 
   return (
     <div className={homeStyle.root}>
