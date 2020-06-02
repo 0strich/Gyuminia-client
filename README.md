@@ -1,35 +1,13 @@
 ## Gyuminia Project Front-end
 이 App 은 Gyuminia 게임의 프론트 부분을 다룹니다.
 
-## 개발자
-
+### Developer
 김규동
 
-### 사용 스택
+### Stacks
 React, Redux, Redux-thunk, React-router, axios
 
-### Modules
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Main Techs
+1. react-router-dom 을 사용한 다중 페이지 구현
+2. jwt 클라이언트 구현
+3. 토큰 인증이 필요한 페이지를 Custom Route(AuthRoute) 사용해 라우팅
