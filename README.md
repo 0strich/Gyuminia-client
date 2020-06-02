@@ -35,13 +35,16 @@ react-router-dom을 사용한 react 다중 페이지 라우팅 구현
 token 인증 만료시 로그인 localStorage에 저장된 token 파기 후 로그인 페이지 라우팅 되도록 하는 AuthRoute 컴포넌트 만들어 사용
 로그아웃 버튼 클릭시 localStorage에 저장된 token 파기 후 로그인 페이지 라우팅
 
-TOKEN TIME EXPIRE
+#### Token Time Expire
+
 ![tokenTimeExpire](./src/images/jwt/tokenTimeExpire.gif)
 
-REMOVE TOKEN : TIME EXPIRE
+#### Remove Token : Time Expire
+
 ![tokenRemove](./src/images/jwt/tokenRemove.gif)
 
-REMOVE TOKEN : LOGOUT
+#### Remove Token : Logout
+
 ![logoutTokenExpire](./src/images/jwt/logoutTokenExpire.gif)
 
 ### Auth Form Validation Check
