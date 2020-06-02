@@ -24,6 +24,7 @@ const NewCharacter = ({ newCharProps }: Props) => {
         open={newCharProps.open}
         onClose={newCharProps.handleClose}
         aria-labelledby="form-dialog-title"
+        style={{ textAlign: "center" }}
       >
         <DialogTitle id="form-dialog-title">
           캐릭터명을 입력해 주세요
