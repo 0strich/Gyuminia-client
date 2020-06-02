@@ -1,7 +1,7 @@
 ## Gyuminia Project Front-end
 이 App 은 Gyuminia 게임의 프론트 부분을 다룹니다.
 
-### 개발자
+## 개발자
 
 김규동
 
