@@ -45,7 +45,7 @@ token 인증 만료시 로그인 localStorage에 저장된 token 파기 후 로�
 
 #### Remove Token : Logout
 
-![logoutTokenExpire](./src/images/jwt/logoutTokenExpire.gif)
+![logoutTokenRemove](./src/images/jwt/logoutTokenRemove.gif)
 
 ### Auth Form Validation Check
 
@@ -53,16 +53,36 @@ token 인증 만료시 로그인 localStorage에 저장된 token 파기 후 로�
 로그인 : 401, 404
 회원가입 : 200, 401, 404, 409
 
+#### Login Form Validation Check
+
+![loginFormValidationCheck](./src/images/validation/loginFormValidationCheck.gif)
+
+#### Signup Form Validation Check
+
+![signupFormValidationCheck](./src/images/validation/signupFormValidationCheck.gif)
+
 ### Character Page
 
 각 유저별 캐릭터 페이지에서 여러개의 캐릭터를 만들 수 있음
 캐릭터명 중복 체크
 새로운 캐릭터는 데이터베이스에서 설정한 기본값으로 셋팅
 
+#### Make New Character
+
+![newChar](./src/images/character/newChar.gif)
+
 ### Ranking Page
 
 서버에 저장된 캐릭터들 score를 기준으로 내림차순해서 출력
 
+#### Ranking
+
+![ranking](./src/images/ranking/ranking.gif)
+
 ### Play Page & Store Page
 
 플레이 페이지 버튼 구현 및 상점 페이지 전환
+
+#### Play
+
+![play](./src/images/play/play.gif)
