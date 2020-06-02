@@ -6,26 +6,24 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Copyright from "../common/Copyright";
 import { useHistory } from "react-router-dom";
 import { signupStyles } from "../../css/useStyles";
-import SignupDialog from "../etc/SignupDialog";
+import AuthDialog from "../etc/AuthDialog";
 
 type Props = {
   onChange: Function;
   onSubmit: Function;
-  signupAuthStatus: number | null;
+  authStatus: number | null;
 };
 
-const SignupForm = ({ onChange, onSubmit, signupAuthStatus }: Props) => {
+const SignupForm = ({ onChange, onSubmit, authStatus }: Props) => {
   const history = useHistory();
   const signupStyle = signupStyles();
 
-  console.log(signupAuthStatus);
+  console.log(authStatus);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -99,9 +97,7 @@ const SignupForm = ({ onChange, onSubmit, signupAuthStatus }: Props) => {
           >
             회원가입
           </Button>
-          {signupAuthStatus && (
-            <SignupDialog signupAuthStatus={signupAuthStatus} />
-          )}
+          {authStatus && <AuthDialog type="signup" authStatus={authStatus} />}
           <Grid container justify="flex-end">
             <Grid item>
               <Link
@@ -115,9 +111,6 @@ const SignupForm = ({ onChange, onSubmit, signupAuthStatus }: Props) => {
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
     </Container>
   );
 };

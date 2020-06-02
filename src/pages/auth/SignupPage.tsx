@@ -6,7 +6,7 @@ import { signUp, changeSignupState } from "../../modules/auth";
 
 const SignupPage = () => {
   const dispatch = useDispatch();
-  const { signup, signupAuthStatus } = useSelector(
+  const { signup, authStatus } = useSelector(
     (state: reducerState) => state.auth
   );
   const { username, password, email } = signup;
@@ -25,7 +25,7 @@ const SignupPage = () => {
       <SignupForm
         onChange={onChange}
         onSubmit={onSubmit}
-        signupAuthStatus={signupAuthStatus}
+        authStatus={authStatus}
       />
     </div>
   );

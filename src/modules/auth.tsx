@@ -11,6 +11,7 @@ export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS" as const;
 export const SIGN_UP_FAIL = "SIGN_UP_FAIL" as const;
 export const CHANGE_SIGNIN_STATE = "CHANGE_SIGNIN_STATE" as const;
 export const CHANGE_SIGNUP_STATE = "CHANGE_SIGNUP_STATE" as const;
+export const RESET_AUTH_STATUS = "RESET_AUTH_STATUS" as const;
 
 // action creators
 export const signIn = (username: string, password: string): any => {
@@ -26,11 +27,11 @@ export const signIn = (username: string, password: string): any => {
         type: SIGN_IN_SUCCESS,
         username: res.data.username,
         userId: res.data.userId,
-        signinAuthStatus: res.data.status,
+        authStatus: res.data.status,
       });
       history.push("/home");
     } catch (err) {
-      dispatch({ type: SIGN_IN_FAIL, signinAuthStatus: err.response.status });
+      dispatch({ type: SIGN_IN_FAIL, authStatus: err.response.status });
     }
   };
 };
@@ -47,9 +48,9 @@ export const signUp = (
         password,
         email,
       });
-      dispatch({ type: SIGN_UP_SUCCESS, signupAuthStatus: res.status });
+      dispatch({ type: SIGN_UP_SUCCESS, authStatus: res.status });
     } catch (err) {
-      dispatch({ type: SIGN_UP_FAIL, signupAuthStatus: err.response.status });
+      dispatch({ type: SIGN_UP_FAIL, authStatus: err.response.status });
     }
   };
 };
@@ -80,12 +81,13 @@ export const changeSignupState = (key: string, value: string): Object => {
   };
 };
 
+export const resetStatus = (): Object => ({ type: RESET_AUTH_STATUS });
+
 // state, action types
 type stateType = {
   signin: any;
   signup: any;
-  signupAuthStatus: number | null;
-  signinAuthStatus: number | null;
+  authStatus: number | null;
   isLogin: boolean;
   username: string;
   userId: number | null;
@@ -101,8 +103,7 @@ type actionType =
 const initState: stateType = {
   signin: {},
   signup: {},
-  signupAuthStatus: null,
-  signinAuthStatus: null,
+  authStatus: null,
   isLogin: false,
   username: "",
   userId: null,
@@ -117,13 +118,13 @@ const auth = (state: stateType = initState, action: actionType) => {
         draft.isLogin = true;
         draft.username = action.username;
         draft.userId = action.userId;
-        draft.signinAuthStatus = action.signinAuthStatus;
+        draft.authStatus = action.authStatus;
         draft.signin = {};
       });
     case SIGN_IN_FAIL:
       return produce(state, (draft) => {
         draft.isLogin = false;
-        draft.signinAuthStatus = action.signinAuthStatus;
+        draft.authStatus = action.authStatus;
         draft.signin = {};
       });
     case SIGN_OUT:
@@ -133,13 +134,13 @@ const auth = (state: stateType = initState, action: actionType) => {
     case SIGN_UP_SUCCESS:
       return produce(state, (draft) => {
         draft.isLogin = true;
-        draft.signupAuthStatus = action.signupAuthStatus;
+        draft.authStatus = action.authStatus;
         draft.signup = {};
       });
     case SIGN_UP_FAIL:
       return produce(state, (draft) => {
         draft.isLogin = true;
-        draft.signupAuthStatus = action.signupAuthStatus;
+        draft.authStatus = action.authStatus;
         draft.signup = {};
       });
     case CHANGE_SIGNIN_STATE:
@@ -149,6 +150,10 @@ const auth = (state: stateType = initState, action: actionType) => {
     case CHANGE_SIGNUP_STATE:
       return produce(state, (draft) => {
         draft.signup[action.key] = action.value;
+      });
+    case RESET_AUTH_STATUS:
+      return produce(state, (draft) => {
+        draft.authStatus = null;
       });
     default:
       return state;
