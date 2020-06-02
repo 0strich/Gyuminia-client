@@ -1,32 +1,28 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Copyright from "../common/Copyright";
 import { useHistory } from "react-router-dom";
 import { loginStyles } from "../../css/useStyles";
-import SigninDialog from "../etc/SigninDialog";
+import AuthDialog from "../etc/AuthDialog";
 
 type Props = {
   onChange: Function;
   onSubmit: Function;
-  signinAuthStatus: number | null;
+  authStatus: number | null;
 };
 
-const SigninForm = ({ onChange, onSubmit, signinAuthStatus }: Props) => {
+const SigninForm = ({ onChange, onSubmit, authStatus }: Props) => {
   const loginStyle = loginStyles();
   const history = useHistory();
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={loginStyle.paper}>
         <Typography component="h1" variant="h5">
           Gyuminia
@@ -76,8 +72,8 @@ const SigninForm = ({ onChange, onSubmit, signinAuthStatus }: Props) => {
               >
                 로그인
               </Button>
-              {signinAuthStatus && signinAuthStatus !== 200 && (
-                <SigninDialog signinAuthStatus={signinAuthStatus} />
+              {authStatus && authStatus !== 200 && (
+                <AuthDialog type="signin" authStatus={authStatus} />
               )}
             </Grid>
             <Grid item xs={6}>
@@ -110,9 +106,6 @@ const SigninForm = ({ onChange, onSubmit, signinAuthStatus }: Props) => {
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 };
