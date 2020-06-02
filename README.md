@@ -20,8 +20,8 @@ React, Redux, Redux-thunk, React-router, axios
 
 react-router-dom을 사용한 react 다중 페이지 라우팅 구현
 
-![routingPage](./images/routing/routingPage.png)
-![routingUrl](./images/routing/routingUrl.png)
+![routingPage](./src/images/routing/routingPage.png)
+![routingUrl](./src/images/routing/routingUrl.png)
 
 ### JWT Token Auth
 
