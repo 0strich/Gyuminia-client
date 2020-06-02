@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -7,29 +7,14 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import useWeapons from "../../hooks/useWeapons";
 import { storeStyles } from "../../css/useStyles";
 import { useHistory } from "react-router-dom";
-import Loading from "../etc/Loading";
 
-type Row = {
-  id: string;
-  item: string;
-  attack: string;
-  defense: string;
-  cost: string;
-};
+type Props = { weapons: Array<any> };
 
-const Store = () => {
+const StoreForm = ({ weapons }: Props) => {
   const storeStyle = storeStyles();
-  const { weapons, getWeapons } = useWeapons();
-  const rows = weapons;
   const history = useHistory();
-
-  useEffect(() => {
-    getWeapons();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   /* 렌더링 */
   return (
@@ -56,22 +41,18 @@ const Store = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows[0] ? (
-            rows.map((row: any) => (
-              <TableRow key={row.item}>
-                <TableCell align="center">{row.item}</TableCell>
-                <TableCell align="center">{row.attack}</TableCell>
-                <TableCell align="center">{row.defense}</TableCell>
-                <TableCell align="center">{row.cost}</TableCell>
-              </TableRow>
-            ))
-          ) : (
-            <Loading />
-          )}
+          {weapons.map((row: any) => (
+            <TableRow key={row.item}>
+              <TableCell align="center">{row.item}</TableCell>
+              <TableCell align="center">{row.attack}</TableCell>
+              <TableCell align="center">{row.defense}</TableCell>
+              <TableCell align="center">{row.cost}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
 };
 
-export default Store;
+export default StoreForm;

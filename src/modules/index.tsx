@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
-import authReducer from "./auth";
-import charReducer from "./character";
-import weaponReducer from "./weapon";
+import auth from "./auth";
+import token from "./token";
+import character from "./character";
+import weapon from "./weapon";
 
-const reducers = combineReducers({ authReducer, charReducer, weaponReducer });
+const reducers = combineReducers({ auth, token, character, weapon });
 
 export type reducerState = ReturnType<typeof reducers>;
 export default reducers;

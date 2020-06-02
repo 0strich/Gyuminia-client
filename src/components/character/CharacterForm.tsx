@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import NewCharacter from "../etc/NewCharacter";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -9,16 +9,14 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { useHistory } from "react-router-dom";
-import { characterStyles } from "../css/useStyles";
-import Loading from "../components/etc/Loading";
-import { reducerState } from "../modules";
+import { characterStyles } from "../../css/useStyles";
+import { newCharPropsType } from "../../pages/character/CharacterPage";
 
-const Character = () => {
+type Props = { charInfo: Array<any>; newCharProps: newCharPropsType };
+
+const CharacterForm = ({ charInfo, newCharProps }: Props) => {
   const characterStyle = characterStyles();
   const history = useHistory();
-  const charInfo = useSelector(
-    (state: reducerState) => state.authReducer.charInfo
-  );
 
   const characterCard = (
     order: number,
@@ -27,7 +25,7 @@ const Character = () => {
     attack: string,
     exp: string
   ) => (
-    <Grid item xs={4}>
+    <Grid key={order} item xs={4}>
       <Card className={characterStyle.root}>
         <CardContent>
           <Typography
@@ -66,29 +64,10 @@ const Character = () => {
           <Skeleton variant="text" animation="wave" />
           <Skeleton variant="rect" animation="wave" width={400} height={100} />
         </div>
-        <Button color="primary" size="large">
-          캐릭터 만들기
-        </Button>
+        <NewCharacter newCharProps={newCharProps} />
       </Card>
     </Grid>
   );
-
-  const charExist = () => {
-    return (
-      <>
-        {charInfo.map((char: any) =>
-          characterCard(
-            char.id,
-            char.character_name,
-            char.hp,
-            char.attack,
-            char.exp
-          )
-        )}
-        {skeletonCard()}
-      </>
-    );
-  };
 
   /* 렌더링 */
   return (
@@ -96,17 +75,23 @@ const Character = () => {
       <AppBar position="static" color="primary">
         <Toolbar style={{ justifyContent: "center" }}>
           <Typography variant="h5">캐릭터</Typography>
-          <Button color="inherit" style={{ justifyContent: "right" }}>
-            로그아웃
-          </Button>
         </Toolbar>
       </AppBar>
       <br />
       <Grid container spacing={3}>
-        {charInfo[0] ? charExist() : <Loading />}
+        {charInfo.map((char: any) => {
+          return characterCard(
+            charInfo.indexOf(char) + 1,
+            char.characterName,
+            char.hp,
+            char.attack,
+            char.exp
+          );
+        })}
+        {skeletonCard()}
       </Grid>
     </div>
   );
 };
 
-export default Character;
+export default CharacterForm;

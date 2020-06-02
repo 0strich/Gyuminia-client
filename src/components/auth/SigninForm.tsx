@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import Character from "../Character";
-import Avatar from "@material-ui/core/Avatar";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -9,41 +7,31 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Copyright from "../common/Copyright";
 import { useHistory } from "react-router-dom";
 import { loginStyles } from "../../css/useStyles";
-import useLogin from "../../hooks/useLogin";
+import SigninDialog from "../etc/SigninDialog";
 
-const Login = () => {
+type Props = {
+  onChange: Function;
+  onSubmit: Function;
+  signinAuthStatus: number | null;
+};
+
+const SigninForm = ({ onChange, onSubmit, signinAuthStatus }: Props) => {
   const loginStyle = loginStyles();
   const history = useHistory();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { isLogin, tryLogin } = useLogin();
-
-  const login = () => {
-    tryLogin(email, password);
-    console.log(isLogin);
-  };
-
-  // input 값들 값이 변경될때마다 state 적용
-  const onChange = (e: any, callback: Function) => callback(e.target.value);
-
-  if (isLogin) {
-    return <Character />;
-  }
 
   return (
     <Container component="main" maxWidth="xs">
-      {/* <Container fixed> */}
       <CssBaseline />
       <div className={loginStyle.paper}>
-        <Avatar className={loginStyle.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
+        <Typography component="h1" variant="h5">
+          Gyuminia
+        </Typography>
+        <br />
         <Typography component="h1" variant="h5">
           로그인
         </Typography>
@@ -53,11 +41,11 @@ const Login = () => {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="이메일"
-            name="email"
-            autoComplete="email"
-            onChange={(e: any) => onChange(e, setEmail)}
+            id="username"
+            label="아이디"
+            name="username"
+            autoComplete="username"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
             autoFocus
           />
           <TextField
@@ -69,7 +57,7 @@ const Login = () => {
             label="비밀번호"
             type="password"
             id="password"
-            onChange={(e: any) => onChange(e, setPassword)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
             autoComplete="current-password"
           />
           <FormControlLabel
@@ -84,10 +72,13 @@ const Login = () => {
                 variant="contained"
                 color="primary"
                 className={loginStyle.submit}
-                onClick={() => login()}
+                onClick={() => onSubmit()}
               >
                 로그인
               </Button>
+              {signinAuthStatus && signinAuthStatus !== 200 && (
+                <SigninDialog signinAuthStatus={signinAuthStatus} />
+              )}
             </Grid>
             <Grid item xs={6}>
               <Button
@@ -95,7 +86,7 @@ const Login = () => {
                 variant="contained"
                 color="primary"
                 className={loginStyle.submit}
-                onClick={() => history.push("/ranking")}
+                onClick={() => history.push("/rank")}
               >
                 랭킹 보기
               </Button>
@@ -110,7 +101,7 @@ const Login = () => {
             <Grid item>
               <Link
                 variant="body2"
-                onClick={() => history.push("/auth/signup")}
+                onClick={() => history.push("/signup")}
                 style={{ cursor: "pointer" }}
               >
                 계정이 없으신가요? 회원가입
@@ -126,4 +117,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SigninForm;

@@ -12,10 +12,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
-import { rankingStyles } from "../css/useStyles";
-import Loading from "../components/etc/Loading";
-import { useSelector } from "react-redux";
-import { reducerState } from "../modules";
+import { rankingStyles } from "../../css/useStyles";
 
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
@@ -39,32 +36,15 @@ const StyledTableRow = withStyles((theme: Theme) =>
   })
 )(TableRow);
 
-// 추후 실제 데이터 가공
-const createData = (
-  rank: number,
-  character: string,
-  level: number,
-  hp: number,
-  attack: number,
-  score: number,
-  last_access: string
-) => {
-  return { rank, character, level, hp, attack, score, last_access };
-};
+type Props = { rankInfo: Array<any> };
 
-const rows = [
-  createData(1, "patric", 10, 100, 20, 10000, "test"),
-  createData(2, "junior", 9, 90, 10, 9000, "test2"),
-];
-
-// Ranking 컴포넌트
-const Ranking = () => {
+// RankForm 컴포넌트
+const RankForm = ({ rankInfo }: Props) => {
   const rankinnStyle = rankingStyles();
   const history = useHistory();
-  // const { charInfo, getCharInfo } = useCharacter();
-  const charInfo = useSelector(
-    (state: reducerState) => state.authReducer.charInfo
-  );
+
+  const deepCopy = [...rankInfo];
+  const rankSort = deepCopy.sort((a, b) => b.rankScore - a.rankScore);
 
   return (
     <div>
@@ -88,27 +68,23 @@ const Ranking = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {charInfo[0] ? (
-              rows.map((row) => (
-                <StyledTableRow key={row.rank}>
-                  <StyledTableCell component="th" scope="row">
-                    {row.rank}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">
-                    {row.character}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">{row.level}</StyledTableCell>
-                  <StyledTableCell align="right">{row.hp}</StyledTableCell>
-                  <StyledTableCell align="right">{row.attack}</StyledTableCell>
-                  <StyledTableCell align="right">{row.score}</StyledTableCell>
-                  <StyledTableCell align="right">
-                    {row.last_access}
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))
-            ) : (
-              <Loading />
-            )}
+            {rankSort.map((row: any) => (
+              <StyledTableRow key={row.id}>
+                <StyledTableCell component="th" scope="row">
+                  {rankSort.indexOf(row) + 1}
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  {row.characterName}
+                </StyledTableCell>
+                <StyledTableCell align="right">{row.level}</StyledTableCell>
+                <StyledTableCell align="right">{row.hp}</StyledTableCell>
+                <StyledTableCell align="right">{row.attack}</StyledTableCell>
+                <StyledTableCell align="right">{row.rankScore}</StyledTableCell>
+                <StyledTableCell align="right">
+                  {row.last_access}
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
@@ -125,4 +101,4 @@ const Ranking = () => {
   );
 };
 
-export default Ranking;
+export default RankForm;

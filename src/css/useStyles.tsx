@@ -116,3 +116,33 @@ export const storeStyles = makeStyles({
     minWidth: 700,
   },
 });
+
+// Home Content
+export const contentStyles = makeStyles((theme) => ({
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
+    // height: "85vh",
+  },
+  heroButtons: {
+    marginTop: theme.spacing(4),
+  },
+}));
+
+// 토큰 만료 도달
+export const tokenExpireStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    modal: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    paper: {
+      backgroundColor: theme.palette.background.paper,
+      border: "2px solid #000",
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+      textAlign: "center",
+    },
+  })
+);
