@@ -33,6 +33,15 @@ PAGE
 token 인증 만료시 로그인 localStorage에 저장된 token 파기 후 로그인 페이지 라우팅 되도록 하는 AuthRoute 컴포넌트 만들어 사용
 로그아웃 버튼 클릭시 localStorage에 저장된 token 파기 후 로그인 페이지 라우팅
 
+TOKEN TIME EXPIRE
+![tokenTimeExpire](./src/images/jwt/tokenTimeExpire.gif)
+
+REMOVE TOKEN : TIME EXPIRE
+![tokenRemove](./src/images/jwt/tokenRemove.gif)
+
+REMOVE TOKEN : LOGOUT
+![logoutTokenExpire](./src/images/jwt/logoutTokenExpire.gif)
+
 ### Auth Form Validation Check
 
 로그인, 회원가입 폼 제출시 서버로부터 받은 stauts code 로 모달창 출력
