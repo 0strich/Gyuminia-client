@@ -16,9 +16,12 @@ React, Redux, Redux-thunk, React-router, axios
 2. 클라이언트 jwt token 인증 구현
 3. 토큰 인증이 필요한 페이지를 Custom Route(AuthRoute) 사용해 라우팅
 
-### MultiPage Routing
+### Multipage Routing
 
 react-router-dom을 사용한 react 다중 페이지 라우팅 구현
+
+![routingPage](./images/routing/routingPage.png)
+![routingUrl](./images/routing/routingUrl.png)
 
 ### JWT Token Auth
 
@@ -39,7 +42,7 @@ token 인증 만료시 로그인 localStorage에 저장된 token 파기 후 로�
 캐릭터명 중복 체크
 새로운 캐릭터는 데이터베이스에서 설정한 기본값으로 셋팅
 
-### Rankking Page
+### Ranking Page
 
 서버에 저장된 캐릭터들 score를 기준으로 내림차순해서 출력
 
