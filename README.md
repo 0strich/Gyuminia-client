@@ -30,9 +30,9 @@ react-router-dom을 사용한 react 다중 페이지 라우팅 구현
 
 ### JWT Token Auth
 
-로그인 성공시 서버로부터 accessToken, refreshToken 발급 받아서 localStorage에 저장
-인증 필요시 localStorage 에서 불러와 사용
-token 인증 만료시 로그인 localStorage에 저장된 token 파기 후 로그인 페이지 라우팅 되도록 하는 AuthRoute 컴포넌트 만들어 사용
+로그인 성공시 서버로부터 accessToken, refreshToken 발급 받아서 localStorage에 저장  
+인증 필요시 localStorage 에서 불러와 사용  
+token 인증 만료시 로그인 localStorage에 저장된 token 파기 후 로그인 페이지 라우팅 되도록 하는 AuthRoute 컴포넌트 만들어 사용  
 로그아웃 버튼 클릭시 localStorage에 저장된 token 파기 후 로그인 페이지 라우팅
 
 #### Token Time Expire
@@ -49,8 +49,8 @@ token 인증 만료시 로그인 localStorage에 저장된 token 파기 후 로�
 
 ### Auth Form Validation Check
 
-로그인, 회원가입 폼 제출시 서버로부터 받은 stauts code 로 모달창 출력
-로그인 : 401, 404
+로그인, 회원가입 폼 제출시 서버로부터 받은 stauts code 로 모달창 출력  
+로그인 : 401, 404  
 회원가입 : 200, 401, 404, 409
 
 #### Login Form Validation Check
@@ -63,8 +63,8 @@ token 인증 만료시 로그인 localStorage에 저장된 token 파기 후 로�
 
 ### Character Page
 
-각 유저별 캐릭터 페이지에서 여러개의 캐릭터를 만들 수 있음
-캐릭터명 중복 체크
+각 유저별 캐릭터 페이지에서 여러개의 캐릭터를 만들 수 있음  
+캐릭터명 중복 체크  
 새로운 캐릭터는 데이터베이스에서 설정한 기본값으로 셋팅
 
 #### Make New Character
