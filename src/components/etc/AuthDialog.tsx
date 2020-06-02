@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -12,6 +13,7 @@ type successProps = { type: string; authStatus: number | null };
 
 const AuthDialog = ({ type, authStatus }: successProps) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -21,6 +23,7 @@ const AuthDialog = ({ type, authStatus }: successProps) => {
   const handleClose = () => {
     setOpen(false);
     dispatch(resetStatus());
+    authStatus === 200 && history.push("/signin");
   };
 
   const typeSignin = (status: number, message: string) => {
@@ -43,7 +46,10 @@ const AuthDialog = ({ type, authStatus }: successProps) => {
       )}
       {type === "signup" && (
         <DialogTitle id="alert-dialog-title">
-          {authStatus === 200 ? "회원가입 성공!!" : "다시 입력해 주세요"}
+          {authStatus === 200 && "회원가입 성공!!"}
+          {authStatus === 401 && "다시 입력해 주세요"}
+          {authStatus === 404 && "다시 입력해 주세요"}
+          {authStatus === 409 && "아이디 중복"}
         </DialogTitle>
       )}
       <DialogContent>

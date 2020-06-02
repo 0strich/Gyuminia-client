@@ -43,6 +43,7 @@ export const signUp = (
 ): any => {
   return async (dispatch: Dispatch) => {
     try {
+      console.log(username, password, email);
       const res = await axios.post("http://localhost:5001/users/signup", {
         username,
         password,
@@ -141,7 +142,7 @@ const auth = (state: stateType = initState, action: actionType) => {
       return produce(state, (draft) => {
         draft.isLogin = true;
         draft.authStatus = action.authStatus;
-        draft.signup = {};
+        // draft.signup = {};
       });
     case CHANGE_SIGNIN_STATE:
       return produce(state, (draft) => {
