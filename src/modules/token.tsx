@@ -3,41 +3,43 @@ import produce from "immer";
 import { Dispatch } from "redux";
 
 // actions
-export const TOKEN_REFRESH_SUCCESS = "TOKEN_REFRESH_SUCCESS" as const;
-export const TOKEN_REFRESH_FAIL = "TOKEN_REFRESH_FAIL" as const;
+export const TOKEN_CHECK_SUCCESS = "TOKEN_CHECK_SUCCESS" as const;
+export const TOKEN_CHECK_FAIL = "TOKEN_CHECK_FAIL" as const;
 
 // action creators
 
-export const refresh = (): any => {
+export const tokenCheck = (): any => {
   return async (dispatch: Dispatch) => {
     try {
-      const refreshToken = localStorage.getItem("refreshToken");
-      const res = await axios.post("http://localhost:5001/users/token", {
-        token: refreshToken,
-      });
+      const headers = {
+        authorization: `Bearer ${localStorage.getItem("refreshToken")}`,
+      };
+      const res = await axios("http://localhost:5001/users/check", { headers });
       localStorage.setItem("accessToken", res.data.accessToken);
-      dispatch({ type: TOKEN_REFRESH_SUCCESS });
+      dispatch({ type: TOKEN_CHECK_SUCCESS });
     } catch (err) {
-      dispatch({ type: TOKEN_REFRESH_FAIL });
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      dispatch({ type: TOKEN_CHECK_FAIL });
     }
   };
 };
 
 // state, action types
-type stateType = { refreshStatus: boolean | null };
-type actionType = ReturnType<typeof refresh>;
-const initState: stateType = { refreshStatus: null };
+type stateType = { tokenAuth: boolean | null };
+type actionType = ReturnType<typeof tokenCheck>;
+const initState: stateType = { tokenAuth: null };
 
 // reducer
 const token = (state: stateType = initState, action: actionType) => {
   switch (action.type) {
-    case TOKEN_REFRESH_SUCCESS:
+    case TOKEN_CHECK_SUCCESS:
       return produce(state, (draft) => {
-        draft.refreshStatus = true;
+        draft.tokenAuth = true;
       });
-    case TOKEN_REFRESH_FAIL:
+    case TOKEN_CHECK_FAIL:
       return produce(state, (draft) => {
-        draft.refreshStatus = false;
+        draft.tokenAuth = false;
       });
     default:
       return state;
