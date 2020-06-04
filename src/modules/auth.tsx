@@ -89,7 +89,7 @@ type stateType = {
   signin: any;
   signup: any;
   authStatus: number | null;
-  isLogin: boolean;
+  visited: boolean;
   username: string;
   userId: number | null;
   charInfo: Array<any>;
@@ -105,7 +105,7 @@ const initState: stateType = {
   signin: {},
   signup: {},
   authStatus: null,
-  isLogin: false,
+  visited: false,
   username: "",
   userId: null,
   charInfo: [],
@@ -116,7 +116,7 @@ const auth = (state: stateType = initState, action: actionType) => {
   switch (action.type) {
     case SIGN_IN_SUCCESS:
       return produce(state, (draft) => {
-        draft.isLogin = true;
+        draft.visited = true;
         draft.username = action.username;
         draft.userId = action.userId;
         draft.authStatus = action.authStatus;
@@ -124,25 +124,24 @@ const auth = (state: stateType = initState, action: actionType) => {
       });
     case SIGN_IN_FAIL:
       return produce(state, (draft) => {
-        draft.isLogin = false;
+        draft.visited = false;
         draft.authStatus = action.authStatus;
         draft.signin = {};
       });
     case SIGN_OUT:
       return produce(state, (draft) => {
-        draft.isLogin = false;
+        draft.visited = false;
       });
     case SIGN_UP_SUCCESS:
       return produce(state, (draft) => {
-        draft.isLogin = true;
+        draft.visited = true;
         draft.authStatus = action.authStatus;
         draft.signup = {};
       });
     case SIGN_UP_FAIL:
       return produce(state, (draft) => {
-        draft.isLogin = true;
+        draft.visited = true;
         draft.authStatus = action.authStatus;
-        // draft.signup = {};
       });
     case CHANGE_SIGNIN_STATE:
       return produce(state, (draft) => {
