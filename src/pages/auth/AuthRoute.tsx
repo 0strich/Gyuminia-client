@@ -16,8 +16,6 @@ const AuthRoute = ({ component: Component, ...rest }: any) => {
     return visited ? <TokenExpireModal /> : <Redirect to="/signin" />;
   };
 
-  console.log("visted ==> ", visited);
-
   useEffect(() => {
     dispatch(tokenCheck());
   }, [dispatch]);
