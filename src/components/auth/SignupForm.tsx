@@ -105,7 +105,7 @@ const SignupForm = ({ onChange, onSubmit, authStatus }: Props) => {
                 onClick={() => history.push("/signin")}
                 style={{ cursor: "pointer" }}
               >
-                이미 계졍이 있으신가요? 로그인
+                이미 계정이 있으신가요? 로그인
               </Link>
             </Grid>
           </Grid>
