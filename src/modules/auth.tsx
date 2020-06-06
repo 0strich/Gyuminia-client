@@ -61,7 +61,6 @@ export const signOut = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     history.push("/");
-    // 로그아웃 api 요청 필요
     dispatch({ type: SIGN_OUT });
   };
 };
@@ -142,6 +141,7 @@ const auth = (state: stateType = initState, action: actionType) => {
       return produce(state, (draft) => {
         draft.visited = true;
         draft.authStatus = action.authStatus;
+        draft.signup = {};
       });
     case CHANGE_SIGNIN_STATE:
       return produce(state, (draft) => {
