@@ -1,50 +1,29 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import decode from "jwt-decode";
-import { Route } from "react-router-dom";
-import { refresh } from "../../modules/token";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Redirect } from "react-router-dom";
+import { tokenCheck } from "../../modules/token";
 import TokenExpireModal from "../../components/etc/TokenExpireModal";
+import { reducerState } from "../../modules";
 
 type Props = { component: any; rest: any };
 
 const AuthRoute = ({ component: Component, ...rest }: any) => {
   const dispatch = useDispatch();
+  const { tokenAuth } = useSelector((state: reducerState) => state.token);
+  const { visited } = useSelector((state: reducerState) => state.auth);
 
-  const checkExpire = (token: string) => {
-    const { exp } = decode(token);
-    if (exp < new Date().getTime() / 1000) return true;
-    return false;
+  const split = () => {
+    return visited ? <TokenExpireModal /> : <Redirect to="/signin" />;
   };
 
-  const checkAuth = () => {
-    const accessToken = localStorage.getItem("accessToken");
-    const refreshToken = localStorage.getItem("refreshToken");
-
-    if (!accessToken || !refreshToken) return false;
-
-    try {
-      if (checkExpire(accessToken)) {
-        if (checkExpire(refreshToken)) {
-          localStorage.removeItem("accessToken");
-          localStorage.removeItem("refreshToken");
-          return false;
-        } else {
-          dispatch(refresh());
-        }
-      }
-    } catch (err) {
-      return false;
-    }
-
-    return true;
-  };
+  useEffect(() => {
+    dispatch(tokenCheck());
+  }, [dispatch]);
 
   return (
     <Route
       {...rest}
-      render={(props) =>
-        checkAuth() ? <Component {...props} /> : <TokenExpireModal />
-      }
+      render={(props) => (tokenAuth ? <Component {...props} /> : split())}
     />
   );
 };
